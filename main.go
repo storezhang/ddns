@@ -29,11 +29,11 @@ func main() {
         }).Fatal("配置文件出错")
     }
 
-    if logLevel, err := log.ParseLevel(conf.Niulang.LogLevel); nil != err {
+    if logLevel, err := log.ParseLevel(conf.DDNS.LogLevel); nil != err {
         log.SetLevel(log.InfoLevel)
         log.WithFields(log.Fields{
             "err":      err,
-            "logLevel": conf.Niulang.LogLevel,
+            "logLevel": conf.DDNS.LogLevel,
         }).Fatal("日志级别配置有误")
     } else {
         log.SetLevel(logLevel)
@@ -49,9 +49,8 @@ func main() {
     }); nil != err {
         log.WithFields(log.Fields{
             "err": err,
-        }).Error("添加SSL更新计划任务失败")
+        }).Error("添加DDNS任务失败")
     }
 
     crontab.Start()
-    web.StartServer(conf)
 }
