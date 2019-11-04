@@ -5,18 +5,23 @@ import (
 )
 
 type Config struct {
-    Debug      bool       `yaml:"debug"`
-    LogLevel   string     `yaml:"logLevel"`
-    TimeFormat string     `yaml:"timeFormat"`
-    DDNS       []DDNS     `yaml:"ddns"`
-    Aliyun     dns.Aliyun `yaml:"aliyun"`
+    DDNS    DDNS       `yaml:"ddns"`
+    Aliyun  dns.Aliyun `yaml:"aliyun"`
+    Domains []Domain   `domains`
 }
 
 type DDNS struct {
-    Domain    string `yaml:"domain"`
-    SubDomain string `yaml:"subDomain"`
-    Redo      int    `yaml:"redo"`
-    Type      string `yaml:"type"`
+    Debug      bool   `yaml:"debug"`
+    LogLevel   string `yaml:"logLevel"`
+    TimeFormat string `yaml:"timeFormat"`
+    Redo       int    `yaml:"redo"`
+}
+
+type Domain struct {
+    Name       string `yaml:"name"`
+    SubDomains string `yaml:"subDomains"`
+    Type       string `yaml:"type"`
+    DNSTypes   string `yaml:"dnsTypes"`
 }
 
 func (ddns *DDNS) UnmarshalYAML(unmarshal func(interface{}) error) error {

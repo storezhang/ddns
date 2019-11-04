@@ -5,11 +5,11 @@ import (
     "io/ioutil"
     "time"
 
-    "ddns/common"
-
-    "github.com/robfig/cron"
+    "github.com/robfig/cron/v3"
     log "github.com/sirupsen/logrus"
     "gopkg.in/yaml.v2"
+
+    "ddns/common"
 )
 
 func main() {
@@ -44,8 +44,8 @@ func main() {
 
     now := time.Now()
     spec := fmt.Sprintf("%d %d */1 * * *", now.Second()+5, now.Minute())
-    if err := crontab.AddFunc(spec, func() {
-        // running(conf)
+    if _, err := crontab.AddFunc(spec, func() {
+        running(conf)
     }); nil != err {
         log.WithFields(log.Fields{
             "spec": spec,
@@ -54,4 +54,18 @@ func main() {
     }
 
     crontab.Start()
+}
+
+func running(conf *common.Config) {
+    for _, domain := range conf.Domains {
+        switch domain.Type {
+        case "aliyun":
+            log.WithFields(log.Fields{
+                "name":      domain.Name,
+                "subDomain": domain.SubDomains,
+                "dnsTypes":  domain.DNSTypes,
+                "type":      domain.Type,
+            }).Debug("执行DNS解析更新")
+        }
+    }
 }
