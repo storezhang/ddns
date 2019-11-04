@@ -48,7 +48,8 @@ func main() {
         // running(conf)
     }); nil != err {
         log.WithFields(log.Fields{
-            "err": err,
+            "spec": spec,
+            "err":  err,
         }).Error("添加DDNS任务失败")
     }
 
