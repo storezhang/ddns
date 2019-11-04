@@ -1,34 +1,34 @@
 package common
 
 import (
-	"ddns/dns"
+    "ddns/dns"
 )
 
 type Config struct {
-	DDNS   DDNS       `yaml:"ddns"`
-	Aliyun dns.Aliyun `yaml:"aliyun"`
+    DDNS   DDNS       `yaml:"ddns"`
+    Aliyun dns.Aliyun `yaml:"aliyun"`
 }
 
 type DDNS struct {
-	Debug      bool   `yaml:"debug"`
-	LogLevel   string `yaml:"logLevel"`
-	TimeFormat string `yaml:"timeFormat"`
-	Domain     string `yaml:"domain"`
-	SubDomain  string `yaml:"subDomain"`
-	Redo       int    `yaml:"redo"`
+    Debug      bool   `yaml:"debug"`
+    LogLevel   string `yaml:"logLevel"`
+    TimeFormat string `yaml:"timeFormat"`
+    Domain     string `yaml:"domain"`
+    SubDomain  string `yaml:"subDomain"`
+    Redo       int    `yaml:"redo"`
 }
 
 func (ddns *DDNS) UnmarshalYAML(unmarshal func(interface{}) error) error {
-	type rawType DDNS
-	raw := rawType{
-		Debug:    false,
-		LogLevel: "info",
-	}
-	if err := unmarshal(&raw); nil != err {
-		return err
-	}
+    type rawType DDNS
+    raw := rawType{
+        Debug:    false,
+        LogLevel: "info",
+    }
+    if err := unmarshal(&raw); nil != err {
+        return err
+    }
 
-	*ddns = DDNS(raw)
+    *ddns = DDNS(raw)
 
-	return nil
+    return nil
 }
