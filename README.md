@@ -21,6 +21,7 @@
 ```
 sudo docker run \
   --net=host \
+  --volume=${YOUR_DDNS_DIR}:/conf \
   --restart=always \
   --detach=true \
   --name=ddns \
