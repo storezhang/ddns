@@ -1,5 +1,8 @@
 # ddns
 [![Build Status](https://cloud.drone.io/api/badges/storezhang/ddns/status.svg)](https://cloud.drone.io/storezhang/ddns)
+[![](https://images.microbadger.com/badges/image/storezhang/ddns.svg)](https://microbadger.com/images/storezhang/ddns "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/storezhang/ddns.svg)](https://microbadger.com/images/storezhang/ddns "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/commit/storezhang/ddns.svg)](https://microbadger.com/images/storezhang/ddns "Get your own commit badge on microbadger.com")
 
 支持DDNS（动态域名解析），特点如下：
 - 支持多域名
