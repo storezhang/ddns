@@ -12,7 +12,6 @@ ENV GID 1000
 
 
 WORKDIR /
-VOLUME ["/data"]
 VOLUME ["/conf"]
 
 
