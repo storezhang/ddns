@@ -16,6 +16,7 @@ VOLUME ["/conf"]
 
 
 ADD ddns /opt
+COPY root /
 
 
 RUN set -ex \
@@ -26,13 +27,10 @@ RUN set -ex \
     && apk update \
     \
     && mkdir -p /conf \
-    && mkdir -p /data \
+    && chmod +x /usr/bin/entrypoint \
     \
     && apk --no-cache add bash s6 \
     && rm -rf /var/cache/apk/*
-
-
-COPY root /
 
 
 ENTRYPOINT ["/usr/bin/entrypoint"]
