@@ -28,6 +28,8 @@ RUN set -ex \
     \
     && mkdir -p /conf \
     && chmod +x /usr/bin/entrypoint \
+    && chmod +x /etc/s6/.s6-svscan/* \
+    && chmod +x /etc/s6/ddns/* \
     \
     && apk --no-cache add bash s6 \
     && rm -rf /var/cache/apk/*
