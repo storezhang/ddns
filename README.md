@@ -41,5 +41,5 @@ domains: # 域名配置
   - type: aliyun # 类型
     name: imyserver.com # 主域名
     subDomains: test # 子域名，以英文逗号,分隔
-    dnsTypes: A # 域名类型，支持A,AAAA,CNAME等，以英文逗号分隔
+    dnsTypes: A # 域名类型，支持A,AAAA,CNAME等，以英文逗号,分隔
 ```
