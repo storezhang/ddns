@@ -16,7 +16,7 @@ VOLUME ["/conf"]
 
 
 ADD ddns /opt
-COPY root /
+COPY docker /
 
 
 RUN set -ex \
