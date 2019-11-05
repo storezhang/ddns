@@ -1,21 +1,12 @@
 # yangjian（杨戬）
-[![Build Status](https://drone.storezhang.imyserver.com:20443/api/badges/imynas/yangjian/status.svg)](https://drone.storezhang.imyserver.com:20443/imynas/yangjian)
+[![Build Status](https://cloud.drone.io/api/badges/storezhang/ddns/status.svg)](https://cloud.drone.io/storezhang/ddns)
 
-基于ACME协议的NAS自动HTTPS更新，使用群晖自带的管理后台进行证书更新，所以不会有任何问题，支持群晖所有套件的一件证书更新，包括：
-- LDAP服务器
-- Drive
-- FTPS
-- WebDAV服务器
-- 其它所有群晖支持的需要HTTPS套件
-
-
-# 支持的NAS系统
-- 群晖（Synology）
-
-
-# 为什么要取名叫杨戬
-在现行的文化中，中国人对自己的文化不自信（参看头条上一说到外国男人和中国女人下面就一群人留言什么长短什么什么的），所以命名全部以中国
-名人来命名，增强文化上的自信。且在中国神话中，杨戬是最著名的**督粮官**，而HTTPS对于NAS来说，就等同于一只军队的粮草，是非常重要的！
+支持DDNS（动态域名解析），特点如下：
+- 支持多域名
+- 支持多提供商
+- 支持Docker运行
+- 极低的内存占用
+- 极低的CPU占用
 
 
 # 如何使用
@@ -35,10 +26,6 @@ docker run \
 # 配置
 配置文件名为config.yml，有如下配置项（**示例所配置的值为默认值**）
 ```
-db:
-  dsn: "root:@tcp(127.0.0.1:3306)/niulang?charset=utf8&parseTime=True&loc=Local"  # 数据库的dsn
-  backup: false # 升级前是否备份数据库
-
 niulang:
   port: 8000  #http server的端口
   debug: false # 是否开启调试模式，在Docker下一定要为false，不然无法运行
@@ -62,48 +49,4 @@ ssls:
         aliKey: xxxx # 阿里的Key
         aliSecret: xxxx # 阿里的Secret
 
-```
-
-关于ACME的配置，可以参看[ACME官网](https://github.com/Neilpang/acme.sh)来做配置配置，配置项可以使用驼峰形式，也可以使用ACME文件里面的配置，举个粟子：
-- Ali_Key可以写成aliKey、Ali_Key
-- Ali_Secret可以写成aliSecret、Ali_Secret
-- DOMAIN可以写成DOMAIN、domain
-
-**程序会对上面的配置做出自动配置**
-
-# API
-
-API 使用JWT认证方式
-
-## 登录API
-URL:
-```bash
-http://127.0.0.1:8000/login
-```
-返回：
-```json
-{
-    "code": 200,
-    "msg": "ok",
-    "data": {
-        "expired": "2019-08-13T18:10:17.928207+08:00",
-        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NjU2OTEwMTcsImlkIjoidGVzdDUiLCJvcmlnX2lhdCI6MTU2NTY4NzQxN30.Z4OGgPy5TD86plQkdKm7tX2H_fUF5ZtfMzdz8o-QAPM"
-    }
-}
-```
-
-## 用户API, 暂时支持 GET, POST, DELETE
-URL:
-```bash
-http://127.0.0.1:8000/user/users/8
-```
-数据结构
-```json
-{
-    "id": 1,
-    "username": "admin",
-    "password": "******",
-    "lastName": "",
-    "firstName": ""
-}
 ```

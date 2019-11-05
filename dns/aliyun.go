@@ -15,14 +15,25 @@ type Aliyun struct {
 func (aliyun *Aliyun) Resolve(domain string, rr string, value string, dnsType string, ttl int) {
     client := getClient(aliyun.AppKey, aliyun.Secret)
 
-    if recordId, add := getRecordId(client, domain, rr, value, dnsType, ttl); !add {
-        if _, err := client.UpdateDomainRecord(&alidns.UpdateDomainRecordRequest{
-            RecordId: recordId,
-            RR:       rr,
-            Type:     dnsType,
-            Value:    value,
-            TTL:      requests.NewInteger(ttl),
-        }); nil != err {
+    if record, add := getRecordId(client, domain, rr, value, dnsType, ttl); !add {
+        if value == record.Value {
+            log.WithFields(log.Fields{
+                "domain": domain,
+                "rr":     rr,
+                "type":   dnsType,
+                "value":  value,
+                "ttl":    ttl,
+            }).Debug("已有相同记录，未做修改")
+            return
+        }
+
+        req := alidns.CreateUpdateDomainRecordRequest()
+        req.RecordId = record.RecordId
+        req.RR = rr
+        req.Type = dnsType
+        req.Value = value
+        req.TTL = requests.NewInteger(ttl)
+        if rsp, err := client.UpdateDomainRecord(req); !rsp.IsSuccess() {
             log.WithFields(log.Fields{
                 "domain": domain,
                 "rr":     rr,
@@ -35,26 +46,30 @@ func (aliyun *Aliyun) Resolve(domain string, rr string, value string, dnsType st
     }
 }
 
-var recordIdCache map[string]string
+var recordCache map[string]*alidns.Record
 
 func getRecordId(
     client *alidns.Client,
     domain string,
     rr string,
-    dnsType string,
     value string,
+    dnsType string,
     ttl int,
-) (recordId string, add bool) {
+) (record *alidns.Record, add bool) {
+    if nil == recordCache {
+        recordCache = make(map[string]*alidns.Record)
+    }
+
     recordIdKey := stringsx.Contract("-", domain, rr, dnsType)
-    if cacheRecordId, ok := recordIdCache[recordIdKey]; !ok {
-        if prQueryRsp, err := client.DescribeDomainRecords(&alidns.DescribeDomainRecordsRequest{
-            DomainName:  domain,
-            RRKeyWord:   rr,
-            TypeKeyWord: dnsType,
-        }); nil != err {
-            for _, record := range prQueryRsp.DomainRecords.Record {
-                if domain == record.DomainName && dnsType == record.Type && rr == record.RR {
-                    recordId = record.RecordId
+    if cacheRecord, ok := recordCache[recordIdKey]; !ok {
+        req := alidns.CreateDescribeDomainRecordsRequest()
+        req.DomainName = domain
+        req.RRKeyWord = rr
+        req.TypeKeyWord = dnsType
+        if prQueryRsp, err := client.DescribeDomainRecords(req); nil == err {
+            for _, serverRecord := range prQueryRsp.DomainRecords.Record {
+                if domain == serverRecord.DomainName && dnsType == serverRecord.Type && rr == serverRecord.RR {
+                    record = &serverRecord
                 }
             }
         } else {
@@ -63,15 +78,28 @@ func getRecordId(
             }).Error("查询阿里域名解析出错")
         }
 
-        if "" == recordId {
-            if addRsp, err := client.AddDomainRecord(&alidns.AddDomainRecordRequest{
-                DomainName: domain,
-                RR:         rr,
-                Type:       dnsType,
-                Value:      value,
-                TTL:        requests.NewInteger(ttl),
-            }); nil == err {
-                recordId = addRsp.RecordId
+        if nil == record {
+            req := alidns.CreateAddDomainRecordRequest()
+            req.DomainName = domain
+            req.RR = rr
+            req.Type = dnsType
+            req.Value = value
+            req.TTL = requests.NewInteger(ttl)
+            if addRsp, err := client.AddDomainRecord(req); nil == err {
+                record = &alidns.Record{
+                    Value:      value,
+                    TTL:        int64(ttl),
+                    Remark:     "",
+                    DomainName: domain,
+                    RR:         rr,
+                    Priority:   0,
+                    RecordId:   addRsp.RecordId,
+                    Status:     "",
+                    Locked:     false,
+                    Weight:     0,
+                    Line:       "",
+                    Type:       dnsType,
+                }
             } else {
                 log.WithFields(log.Fields{
                     "domain": domain,
@@ -84,9 +112,9 @@ func getRecordId(
             }
         }
         // 将recordId放入缓存
-        recordIdCache[recordIdKey] = recordId
+        recordCache[recordIdKey] = record
     } else {
-        recordId = cacheRecordId
+        record = cacheRecord
     }
 
     return
@@ -95,6 +123,10 @@ func getRecordId(
 var clientCache map[string]*alidns.Client
 
 func getClient(appKey string, secret string) (client *alidns.Client) {
+    if nil == clientCache {
+        clientCache = make(map[string]*alidns.Client)
+    }
+
     clientKey := stringsx.Contract("-", appKey, secret)
     if cacheClient, ok := clientCache[clientKey]; !ok {
         newClient, err := alidns.NewClientWithAccessKey("cn-hangzhou", appKey, secret)
