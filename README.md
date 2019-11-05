@@ -1,4 +1,4 @@
-# yangjian（杨戬）
+# ddns
 [![Build Status](https://cloud.drone.io/api/badges/storezhang/ddns/status.svg)](https://cloud.drone.io/storezhang/ddns)
 
 支持DDNS（动态域名解析），特点如下：
@@ -16,37 +16,30 @@
 
 直接使用命令行执行
 ```
-docker run \
-  --volume=/your/config/path:/yangjian-data \
-  --name=yangjian \
-  storezhang/yangjian
+sudo docker run \
+  --net=host \
+  --restart=always \
+  --detach=true \
+  --name=ddns \
+  storezhang/ddns
 ```
 
 
 # 配置
-配置文件名为config.yml，有如下配置项（**示例所配置的值为默认值**）
+配置文件名为ddns.yml，有如下配置项（**示例所配置的值为默认值**）
 ```
-niulang:
-  port: 8000  #http server的端口
-  debug: false # 是否开启调试模式，在Docker下一定要为false，不然无法运行
-  browserWidth: 2560 # 窗口宽度
-  browserHeight: 1600 # 窗口调试
-  execDurationMonth: 24h # 运行间隔
-  browserTimeout: 1h # 浏览器超时时间
-  timeFormat: 2006-01-02 15:04:05 # 参看Golang的时间格式配置
-  delayExit: 15s # 结束后多久关闭浏览器
+ddns:
+  debug: true # 是否开户Debug模式
+  logLevel: debug # 日志级别
+  redo: 1m # 执行间隔，支持1s、1m、1m1s等
 
-ssls:
-  - domain: nas.imyserver.com # 你要设置的NAS的域名
-    url: https://nas.imyserver.com # 你的群晖登录地址，可以是内网地址
-    username: xxxx # 群晖的用户名（确保此用户能操作证书）
-    password: xxxx # 群晖的密码
-    type: synology # NAS的类型，支持类型synology（群晖）、unas（UNAS）
-    lang: English # 群晖语言（请在你的群晖系统区域设置里查看有哪些语言，如English、简体中文等）
-    acme: # ACME配置，具体配置参看ACME的配置
-        dns: dns_ali # 域名提供商的类型
-        dnsSleep: 120 # DNS配置间隔时间，用的是ACME的DNS域名验证方式，此时间为DNS生效时间
-        aliKey: xxxx # 阿里的Key
-        aliSecret: xxxx # 阿里的Secret
+aliyun: # 阿里云的配置
+  appKey: ${ALIYUN_APPKEY} # 阿里云的AppKey
+  secret: ${ALIYUN_SECRET} # 阿里云的Secret
 
+domains: # 域名配置
+  - type: aliyun # 类型
+    name: imyserver.com # 主域名
+    subDomains: test # 子域名，以英文逗号,分隔
+    dnsTypes: A # 域名类型，支持A,AAAA,CNAME等，以英文逗号分隔
 ```
