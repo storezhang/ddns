@@ -50,9 +50,10 @@ func main() {
 
     // 增加启动执行
     now := time.Now()
+    now.Add(time.Second * 55)
     spec := fmt.Sprintf(
         "%d %d %d %d %d %d",
-        now.Second()+5, now.Minute(), now.Hour(),
+        now.Second(), now.Minute(), now.Hour(),
         now.Day(), now.Month(), now.Weekday(),
     )
     if _, err := crontab.AddFunc(spec, func() {

@@ -13,4 +13,4 @@
 *.out
 .idea/
 
-config.yml
+ddns.yml
