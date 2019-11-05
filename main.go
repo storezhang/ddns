@@ -50,7 +50,7 @@ func main() {
 
     // 增加启动执行
     now := time.Now()
-    now.Add(time.Second * 55)
+    now.Add(time.Second * 5)
     spec := fmt.Sprintf(
         "%d %d %d %d %d %d",
         now.Second(), now.Minute(), now.Hour(),
