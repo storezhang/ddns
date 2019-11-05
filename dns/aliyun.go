@@ -23,7 +23,7 @@ func (aliyun *Aliyun) Resolve(domain string, rr string, value string, dnsType st
                 "type":   dnsType,
                 "value":  value,
                 "ttl":    ttl,
-            }).Debug("已有相同记录，未做修改")
+            }).Info("已有相同记录，未做修改")
             return
         }
 

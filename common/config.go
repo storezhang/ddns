@@ -14,16 +14,18 @@ type DDNS struct {
     Debug      bool   `yaml:"debug"`
     LogLevel   string `yaml:"logLevel"`
     TimeFormat string `yaml:"timeFormat"`
-    Redo       string `yaml:"redo"`
 }
 
 type Domain struct {
-    Name       string `yaml:"name"`
-    SubDomains string `yaml:"subDomains"`
-    Type       string `yaml:"type"`
-    DNSTypes   string `yaml:"dnsTypes"`
-    Value      string `yaml:"value"`
-    TTL        int    `yaml:"ttl"`
+    Name            string `yaml:"name"`
+    SubDomains      string `yaml:"subDomains"`
+    SubDomainPrefix string `yaml:"subDomainPrefix"`
+    SubDomainStaff  string `yaml:"subDomainStaff"`
+    Type            string `yaml:"type"`
+    DNSTypes        string `yaml:"dnsTypes"`
+    Value           string `yaml:"value"`
+    TTL             int    `yaml:"ttl"`
+    Redo            string `yaml:"redo"`
 }
 
 func (ddns *DDNS) UnmarshalYAML(unmarshal func(interface{}) error) error {
@@ -31,7 +33,6 @@ func (ddns *DDNS) UnmarshalYAML(unmarshal func(interface{}) error) error {
     raw := rawType{
         Debug:    false,
         LogLevel: "info",
-        Redo:     "1m",
     }
     if err := unmarshal(&raw); nil != err {
         return err
@@ -45,8 +46,11 @@ func (ddns *DDNS) UnmarshalYAML(unmarshal func(interface{}) error) error {
 func (domain *Domain) UnmarshalYAML(unmarshal func(interface{}) error) error {
     type rawType Domain
     raw := rawType{
-        Value: "",
-        TTL:   600,
+        SubDomainPrefix: "",
+        SubDomainStaff:  "",
+        Value:           "",
+        TTL:             600,
+        Redo:            "1m",
     }
     if err := unmarshal(&raw); nil != err {
         return err

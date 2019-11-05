@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6808c3e8-5f4d-4dcc-8436-017ba17b61ab" name="Default Changelist" comment="增加Docker Badger">
+    <list default="true" id="6808c3e8-5f4d-4dcc-8436-017ba17b61ab" name="Default Changelist" comment="修复Docker打包">
       <changelist_data name="张川" email="storezhang@gmail.com" />
+      <change afterPath="$PROJECT_DIR$/cronjob.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/root/etc/ddns/ddns.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/root/etc/s6/.s6-svscan/finish" beforeDir="false" afterPath="$PROJECT_DIR$/docker/etc/s6/.s6-svscan/finish" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/root/etc/s6/ddns/finish" beforeDir="false" afterPath="$PROJECT_DIR$/docker/etc/s6/ddns/finish" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/root/etc/s6/ddns/run" beforeDir="false" afterPath="$PROJECT_DIR$/docker/etc/s6/ddns/run" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/root/etc/s6/ddns/setup" beforeDir="false" afterPath="$PROJECT_DIR$/docker/etc/s6/ddns/setup" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/root/usr/bin/entrypoint" beforeDir="false" afterPath="$PROJECT_DIR$/docker/usr/bin/entrypoint" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dns/aliyun.go" beforeDir="false" afterPath="$PROJECT_DIR$/dns/aliyun.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/etc/s6/.s6-svscan/finish" beforeDir="false" afterPath="$PROJECT_DIR$/docker/etc/s6/.s6-svscan/finish" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/etc/s6/ddns/finish" beforeDir="false" afterPath="$PROJECT_DIR$/docker/etc/s6/ddns/finish" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/etc/s6/ddns/setup" beforeDir="false" afterPath="$PROJECT_DIR$/docker/etc/s6/ddns/setup" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/usr/bin/entrypoint" beforeDir="false" afterPath="$PROJECT_DIR$/docker/usr/bin/entrypoint" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,10 +124,10 @@
     <MESSAGE value="增加Aliyun的代码" />
     <MESSAGE value="增加Docker打包" />
     <MESSAGE value="修改README" />
-    <MESSAGE value="修复Docker打包" />
     <MESSAGE value="修复添加任务时间超出范围" />
     <MESSAGE value="增加Docker Badger" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加Docker Badger" />
+    <MESSAGE value="修复Docker打包" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复Docker打包" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -147,6 +149,10 @@
       <screen x="63" y="0" width="1217" height="720" />
     </state>
     <state x="126" y="15" key="#com.intellij.execution.impl.EditConfigurationsDialog/63.0.1217.720@63.0.1217.720" timestamp="1572922097163" />
+    <state x="437" y="163" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1572955454745">
+      <screen x="63" y="0" width="1217" height="720" />
+    </state>
+    <state x="437" y="163" key="#com.intellij.fileTypes.FileTypeChooser/63.0.1217.720@63.0.1217.720" timestamp="1572955454745" />
     <state x="402" y="107" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1572922812327">
       <screen x="63" y="0" width="1217" height="720" />
     </state>
@@ -159,38 +165,38 @@
       <screen x="63" y="0" width="1217" height="720" />
     </state>
     <state x="453" y="114" key="FileChooserDialogImpl/63.0.1217.720@63.0.1217.720" timestamp="1572844732449" />
-    <state width="1174" height="220" key="GridCell.Tab.0.bottom" timestamp="1572930572331">
+    <state width="1174" height="304" key="GridCell.Tab.0.bottom" timestamp="1572956834631">
       <screen x="63" y="0" width="1217" height="720" />
     </state>
-    <state width="1174" height="220" key="GridCell.Tab.0.bottom/63.0.1217.720@63.0.1217.720" timestamp="1572930572331" />
-    <state width="1174" height="220" key="GridCell.Tab.0.center" timestamp="1572930572331">
+    <state width="1174" height="304" key="GridCell.Tab.0.bottom/63.0.1217.720@63.0.1217.720" timestamp="1572956834631" />
+    <state width="1174" height="304" key="GridCell.Tab.0.center" timestamp="1572956834631">
       <screen x="63" y="0" width="1217" height="720" />
     </state>
-    <state width="1174" height="220" key="GridCell.Tab.0.center/63.0.1217.720@63.0.1217.720" timestamp="1572930572331" />
-    <state width="1174" height="220" key="GridCell.Tab.0.left" timestamp="1572930572331">
+    <state width="1174" height="304" key="GridCell.Tab.0.center/63.0.1217.720@63.0.1217.720" timestamp="1572956834631" />
+    <state width="1174" height="304" key="GridCell.Tab.0.left" timestamp="1572956834630">
       <screen x="63" y="0" width="1217" height="720" />
     </state>
-    <state width="1174" height="220" key="GridCell.Tab.0.left/63.0.1217.720@63.0.1217.720" timestamp="1572930572331" />
-    <state width="1174" height="220" key="GridCell.Tab.0.right" timestamp="1572930572331">
+    <state width="1174" height="304" key="GridCell.Tab.0.left/63.0.1217.720@63.0.1217.720" timestamp="1572956834630" />
+    <state width="1174" height="304" key="GridCell.Tab.0.right" timestamp="1572956834631">
       <screen x="63" y="0" width="1217" height="720" />
     </state>
-    <state width="1174" height="220" key="GridCell.Tab.0.right/63.0.1217.720@63.0.1217.720" timestamp="1572930572331" />
-    <state width="1174" height="220" key="GridCell.Tab.1.bottom" timestamp="1572930572334">
+    <state width="1174" height="304" key="GridCell.Tab.0.right/63.0.1217.720@63.0.1217.720" timestamp="1572956834631" />
+    <state width="1174" height="304" key="GridCell.Tab.1.bottom" timestamp="1572956834632">
       <screen x="63" y="0" width="1217" height="720" />
     </state>
-    <state width="1174" height="220" key="GridCell.Tab.1.bottom/63.0.1217.720@63.0.1217.720" timestamp="1572930572334" />
-    <state width="1174" height="220" key="GridCell.Tab.1.center" timestamp="1572930572331">
+    <state width="1174" height="304" key="GridCell.Tab.1.bottom/63.0.1217.720@63.0.1217.720" timestamp="1572956834632" />
+    <state width="1174" height="304" key="GridCell.Tab.1.center" timestamp="1572956834631">
       <screen x="63" y="0" width="1217" height="720" />
     </state>
-    <state width="1174" height="220" key="GridCell.Tab.1.center/63.0.1217.720@63.0.1217.720" timestamp="1572930572331" />
-    <state width="1174" height="220" key="GridCell.Tab.1.left" timestamp="1572930572331">
+    <state width="1174" height="304" key="GridCell.Tab.1.center/63.0.1217.720@63.0.1217.720" timestamp="1572956834631" />
+    <state width="1174" height="304" key="GridCell.Tab.1.left" timestamp="1572956834631">
       <screen x="63" y="0" width="1217" height="720" />
     </state>
-    <state width="1174" height="220" key="GridCell.Tab.1.left/63.0.1217.720@63.0.1217.720" timestamp="1572930572331" />
-    <state width="1174" height="220" key="GridCell.Tab.1.right" timestamp="1572930572332">
+    <state width="1174" height="304" key="GridCell.Tab.1.left/63.0.1217.720@63.0.1217.720" timestamp="1572956834631" />
+    <state width="1174" height="304" key="GridCell.Tab.1.right" timestamp="1572956834632">
       <screen x="63" y="0" width="1217" height="720" />
     </state>
-    <state width="1174" height="220" key="GridCell.Tab.1.right/63.0.1217.720@63.0.1217.720" timestamp="1572930572332" />
+    <state width="1174" height="304" key="GridCell.Tab.1.right/63.0.1217.720@63.0.1217.720" timestamp="1572956834632" />
     <state x="495" y="71" key="RollbackChangesDialog" timestamp="1572844584153">
       <screen x="63" y="0" width="1217" height="720" />
     </state>
@@ -207,6 +213,10 @@
       <screen x="63" y="0" width="1217" height="720" />
     </state>
     <state x="427" y="204" key="cloudConfig.PluginsDialog/63.0.1217.720@63.0.1217.720" timestamp="1572856197620" />
+    <state x="361" y="0" width="742" height="720" key="find.popup" timestamp="1572939748723">
+      <screen x="63" y="0" width="1217" height="720" />
+    </state>
+    <state x="361" y="0" width="742" height="720" key="find.popup/63.0.1217.720@63.0.1217.720" timestamp="1572939748723" />
     <state x="488" y="201" key="git4idea.ui.GitTagDialog" timestamp="1572931162278">
       <screen x="63" y="0" width="1217" height="720" />
     </state>

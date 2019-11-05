@@ -35,7 +35,6 @@ sudo docker run \
 ddns:
   debug: true # 是否开户Debug模式
   logLevel: debug # 日志级别
-  redo: 1m # 执行间隔，支持1s、1m、1m1s等
 
 aliyun: # 阿里云的配置
   appKey: ${ALIYUN_APPKEY} # 阿里云的AppKey
@@ -45,5 +44,15 @@ domains: # 域名配置
   - type: aliyun # 类型
     name: imyserver.com # 主域名
     subDomains: test # 子域名，以英文逗号,分隔
+    subDomainPrefix: prefix # 子域名前缀，会加在所有的子域名前，如prefox.test
+    subDomainStaff: staff # 子域名后缀，会加在所有子域名后，如test.staff
+    value: ${VALUE} # 值，如果dnsType类型为CNAE需要填写此值
     dnsTypes: A # 域名类型，支持A,AAAA,CNAME等，以英文逗号,分隔
+    redo: 1m # 执行间隔，支持1s、1m、1m1s等
+  - type: aliyun # 类型
+    name: imyserver.com # 主域名
+    subDomains: test11,test22 # 子域名，以英文逗号,分隔
+    value: test.imyserver.com # 值，如果dnsType类型为CNAE需要填写此值
+    dnsType: CNAME A # 域名类型，支持A,AAAA,CNAME等，以英文逗号,分隔
+    redo: 1h # 执行间隔，支持1s、1m、1m1s等
 ```

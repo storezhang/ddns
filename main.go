@@ -4,16 +4,14 @@ import (
     `flag`
     `fmt`
     `io/ioutil`
-    `strings`
     `time`
 
     `github.com/robfig/cron/v3`
     log `github.com/sirupsen/logrus`
     `gopkg.in/yaml.v2`
 
-    `github.com/storezhang/gos/nets`
-
     `ddns/common`
+    `ddns/dns`
 )
 
 func main() {
@@ -48,82 +46,58 @@ func main() {
     crontab := cron.New(cron.WithSeconds())
     defer crontab.Stop()
 
-    // 增加启动执行
-    now := time.Now()
-    now.Add(time.Second * 5)
-    spec := fmt.Sprintf(
-        "%d %d %d %d %d %d",
-        now.Second(), now.Minute(), now.Hour(),
-        now.Day(), now.Month(), now.Weekday(),
-    )
-    if _, err := crontab.AddFunc(spec, func() {
-        running(conf)
-    }); nil != err {
-        log.WithFields(log.Fields{
-            "spec": spec,
-            "err":  err,
-        }).Error("添加DDNS任务失败")
-    }
-    // 真正的执行任务
-    if _, err := crontab.AddFunc(fmt.Sprintf("@every %s", conf.DDNS.Redo), func() {
-        running(conf)
-    }); nil != err {
-        log.WithFields(log.Fields{
-            "spec": spec,
-            "err":  err,
-        }).Error("添加DDNS任务失败")
+    for _, domain := range conf.Domains {
+        var resolver dns.Resolver
+
+        switch domain.Type {
+        case "aliyun":
+            resolver = &conf.Aliyun
+        default:
+            log.WithFields(log.Fields{"type": domain.Type}).Fatal("不支持该类型，请重新配置")
+        }
+
+        // 增加启动立即执行
+        ddnsJob := &DDNSJob{resolver: resolver, domain: domain}
+        now := time.Now()
+        now = now.Add(time.Second * 3)
+        spec := fmt.Sprintf(
+            "%d %d %d %d %d %d",
+            now.Second(), now.Minute(), now.Hour(),
+            now.Day(), now.Month(), now.Weekday(),
+        )
+        if id, err := crontab.AddJob(spec, ddnsJob); nil != err {
+            log.WithFields(log.Fields{
+                "domain": domain.Name,
+                "spec":   spec,
+                "err":    err,
+            }).Error("添加DDNS任务失败")
+        } else {
+            log.WithFields(log.Fields{
+                "domain":     domain.Name,
+                "subDomains": domain.SubDomains,
+                "spec":       spec,
+                "id":         id,
+            }).Info("添加DDNS任务成功")
+        }
+        // 真正的执行任务
+        spec = fmt.Sprintf("@every %s", domain.Redo)
+        if id, err := crontab.AddJob(spec, ddnsJob); nil != err {
+            log.WithFields(log.Fields{
+                "domain":     domain.Name,
+                "subDomains": domain.SubDomains,
+                "spec":       spec,
+                "err":        err,
+            }).Error("添加DDNS任务失败")
+        } else {
+            log.WithFields(log.Fields{
+                "domain":     domain.Name,
+                "subDomains": domain.SubDomains,
+                "spec":       spec,
+                "id":         id,
+            }).Info("添加DDNS任务成功")
+        }
     }
 
     crontab.Start()
     select {}
-}
-
-func running(conf *common.Config) {
-    for _, domain := range conf.Domains {
-        for _, dnsType := range strings.Split(domain.DNSTypes, ",") {
-            value := getValue(dnsType, domain)
-            for _, subDomain := range strings.Split(domain.SubDomains, ",") {
-                log.WithFields(log.Fields{
-                    "name":      domain.Name,
-                    "subDomain": subDomain,
-                    "dnsType":   dnsType,
-                    "type":      domain.Type,
-                    "value":     value,
-                }).Debug("执行DNS解析更新")
-
-                switch domain.Type {
-                case "aliyun":
-                    conf.Aliyun.Resolve(
-                        domain.Name,
-                        subDomain,
-                        value,
-                        dnsType,
-                        domain.TTL,
-                    )
-                }
-            }
-        }
-    }
-}
-
-func getValue(dnsType string, domain common.Domain) string {
-    var value string
-
-    switch dnsType {
-    case "A":
-        if ip, err := nets.GetPublicIp(); nil != err {
-            log.WithFields(log.Fields{
-                "name":      domain.Name,
-                "subDomain": domain.SubDomains,
-                "dnsTypes":  domain.DNSTypes,
-                "err":       err,
-            }).Error("解析本机IP地址出错")
-        } else {
-            value = ip
-        }
-    default:
-        value = domain.Value
-    }
-
-    return value
 }
