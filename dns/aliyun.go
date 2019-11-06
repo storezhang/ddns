@@ -15,7 +15,11 @@ type Aliyun struct {
 func (aliyun *Aliyun) Resolve(domain string, rr string, value string, dnsType string, ttl int) {
     client := getClient(aliyun.AppKey, aliyun.Secret)
 
-    if record, add := getRecordId(client, domain, rr, value, dnsType, ttl); !add {
+    if record, add, err := getRecordId(client, domain, rr, value, dnsType, ttl); nil == err {
+        if add {
+            return
+        }
+
         if value == record.Value {
             log.WithFields(log.Fields{
                 "domain": domain,
@@ -33,7 +37,7 @@ func (aliyun *Aliyun) Resolve(domain string, rr string, value string, dnsType st
         req.Type = dnsType
         req.Value = value
         req.TTL = requests.NewInteger(ttl)
-        if rsp, err := client.UpdateDomainRecord(req); !rsp.IsSuccess() {
+        if rsp, err := client.UpdateDomainRecord(req); nil != rsp && !rsp.IsSuccess() {
             log.WithFields(log.Fields{
                 "domain": domain,
                 "rr":     rr,
@@ -42,7 +46,24 @@ func (aliyun *Aliyun) Resolve(domain string, rr string, value string, dnsType st
                 "ttl":    requests.NewInteger(ttl),
                 "err":    err,
             }).Error("修改解析记录出错")
+        } else {
+            log.WithFields(log.Fields{
+                "domain": domain,
+                "rr":     rr,
+                "type":   dnsType,
+                "value":  value,
+                "ttl":    requests.NewInteger(ttl),
+            }).Trace("修改解析记录成功")
         }
+    } else {
+        log.WithFields(log.Fields{
+            "domain": domain,
+            "rr":     rr,
+            "type":   dnsType,
+            "value":  value,
+            "ttl":    requests.NewInteger(ttl),
+            "err":    err,
+        }).Error("修改解析记录出错")
     }
 }
 
@@ -55,7 +76,7 @@ func getRecordId(
     value string,
     dnsType string,
     ttl int,
-) (record *alidns.Record, add bool) {
+) (record *alidns.Record, add bool, err error) {
     if nil == recordCache {
         recordCache = make(map[string]*alidns.Record)
     }
@@ -66,16 +87,15 @@ func getRecordId(
         req.DomainName = domain
         req.RRKeyWord = rr
         req.TypeKeyWord = dnsType
-        if prQueryRsp, err := client.DescribeDomainRecords(req); nil == err {
+        if prQueryRsp, queryErr := client.DescribeDomainRecords(req); nil == queryErr {
             for _, serverRecord := range prQueryRsp.DomainRecords.Record {
                 if domain == serverRecord.DomainName && dnsType == serverRecord.Type && rr == serverRecord.RR {
                     record = &serverRecord
                 }
             }
         } else {
-            log.WithFields(log.Fields{
-                "err": err,
-            }).Error("查询阿里域名解析出错")
+            err = queryErr
+            return
         }
 
         if nil == record {
