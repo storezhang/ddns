@@ -1,0 +1,42 @@
+kind: pipeline
+name: ddns
+
+clone:
+  disable: true
+
+steps:
+  - name: clone
+    image: plugins/git
+    recursive: true
+
+
+  - name: build
+    image: ataraev/golang-alpine-git
+    volumes:
+      - name: deps
+        path: /go
+    commands:
+      - export GOPROXY=https://goproxy.io
+      - go get -u github.com/gobuffalo/packr/v2/packr2
+      - packr2 clean
+      - packr2
+      - CGO_ENABLED=0 GOOS=linux go build -ldflags '-extldflags "-static"' -tags=jsoniter -a -installsuffix cgo -o $$DRONE_REPO_NAME .
+
+
+  - name: docker
+    image: plugins/docker
+    settings:
+      repo: storezhang/ddns
+      dockerfile: ./Dockerfile
+      mirror: https://docker.mirrors.ustc.edu.cn
+      storage_driver: vfs
+      username: storezhang
+      password:
+        from_secret: docker_password
+      auto_tag: true
+      force_tag: true
+
+
+volumes:
+  - name: deps
+    temp: {}
