@@ -1,7 +1,7 @@
 package utils
 
 import (
-	"strings"
+    "strings"
 
 	"github.com/chromedp/chromedp"
 )
