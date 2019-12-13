@@ -1,67 +1,65 @@
 package common
 
 import (
-	"ddns/sign"
+	"songjiang/sign"
 )
 
 // Config 程序整体配置
 type Config struct {
-	DDNS    DDNS        `yaml:"ddns"`
-	Aliyun  sign.Aliyun `yaml:"aliyun"`
-	Domains []Domain    `yaml:"domains"`
+	Songjiang Songjiang  `yaml:"songjiang"`
+	Hao4k     sign.Hao4k `yaml:"hao4k"`
+	Apps      []App      `yaml:"apps"`
 }
 
-// DDNS DDNS的配置
-type DDNS struct {
-	Debug      bool   `yaml:"debug"`
-	LogLevel   string `yaml:"logLevel"`
-	TimeFormat string `yaml:"timeFormat"`
+// Songjiang Songjiang的配置
+type Songjiang struct {
+	Debug          bool   `yaml:"debug"`
+	LogLevel       string `yaml:"logLevel"`
+	TimeFormat     string `yaml:"timeFormat"`
+	BrowserWidth   int    `yaml:"browserWidth"`
+	BrowserHeight  int    `yaml:"browserHeight"`
+	BrowserTimeout string `yaml:"browserTimeout"`
+	Redo           string `yaml:"redo"`
 }
 
-// Domain 每个域名的配置
-type Domain struct {
-	Name            string `yaml:"name"`
-	SubDomains      string `yaml:"subDomains"`
-	SubDomainPrefix string `yaml:"subDomainPrefix"`
-	SubDomainStaff  string `yaml:"subDomainStaff"`
-	Type            string `yaml:"type"`
-	DNSTypes        string `yaml:"dnsTypes"`
-	Value           string `yaml:"value"`
-	TTL             int    `yaml:"ttl"`
-	Redo            string `yaml:"redo"`
+// App 描述一个可以被自动签到的应用
+type App struct {
+	Type   string `yaml:"type"`
+	Cookie string `yaml:cookie`
 }
 
-// UnmarshalYAML 从YAML反序列化成DDNS对象时的默认值处理
-func (ddns *DDNS) UnmarshalYAML(unmarshal func(interface{}) error) error {
-	type rawType DDNS
+// UnmarshalYAML 反序列化App对象时的默认值
+func (app *App) UnmarshalYAML(unmarshal func(interface{}) error) error {
+	type rawType App
 	raw := rawType{
-		Debug:    false,
-		LogLevel: "info",
+		Type:   "hao4k",
+		Cookie: "",
 	}
 	if err := unmarshal(&raw); nil != err {
 		return err
 	}
 
-	*ddns = DDNS(raw)
+	*app = App(raw)
 
 	return nil
 }
 
-// UnmarshalYAML 从YAML反序列化成域名对象时的默认值处理
-func (domain *Domain) UnmarshalYAML(unmarshal func(interface{}) error) error {
-	type rawType Domain
+// UnmarshalYAML 反序列化Songjiang对象时的默认值处理
+func (songjiang *Songjiang) UnmarshalYAML(unmarshal func(interface{}) error) error {
+	type rawType Songjiang
 	raw := rawType{
-		SubDomainPrefix: "",
-		SubDomainStaff:  "",
-		Value:           "",
-		TTL:             600,
-		Redo:            "1m",
+		Debug:          false,
+		LogLevel:       "info",
+		BrowserHeight:  1080,
+		BrowserWidth:   1920,
+		BrowserTimeout: "15s",
+		Redo:           "5s",
 	}
 	if err := unmarshal(&raw); nil != err {
 		return err
 	}
 
-	*domain = Domain(raw)
+	*songjiang = Songjiang(raw)
 
 	return nil
 }

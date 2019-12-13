@@ -1,7 +1,7 @@
 #!/bin/sh
 
-if [ ! -f /conf/ddns.yml ]; then
-  cp /etc/ddns/ddns.yml /conf/ddns.yml
+if [ ! -f /conf/songjiang.yml ]; then
+  cp /etc/ddns/songjiang.yml /conf/songjiang.yml
 fi
 
 chown -R "${USERNAME}":"${USERNAME}" /conf

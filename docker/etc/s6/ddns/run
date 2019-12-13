@@ -2,4 +2,4 @@
 
 [[ -f ./setup ]] && source ./setup
 
-exec su-exec "${USERNAME}" /opt/ddns --conf /conf/ddns.yml
+exec su-exec "${USERNAME}" /opt/ddns --conf /conf/songjiang.yml
