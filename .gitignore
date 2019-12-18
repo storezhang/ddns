@@ -12,7 +12,9 @@
 test.json
 
 # Config files
-songjiang.yml
+application.yml
+application.json
+application.ini
 
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out

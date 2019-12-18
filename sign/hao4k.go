@@ -1,39 +1,25 @@
 package sign
 
 import (
-    "context"
+    `context`
 
-    "github.com/chromedp/chromedp"
-    log "github.com/sirupsen/logrus"
-    "github.com/storezhang/gos/chromedps"
+    `github.com/chromedp/chromedp`
+    log `github.com/sirupsen/logrus`
+    `github.com/storezhang/gos/chromedps`
+    `github.com/storezhang/gos/webs`
 
-    "songjiang/utils"
+    `songjiang/utils`
 )
 
 // Hao4k Hao4k对象
 type Hao4k struct {
-    SignSelector string `yaml:"signSelector"`
-    SelectorType string `yaml:"selectorType"`
-    SignUrl      string `yaml:"signUrl"`
+    SignSelector string `default:"'#JD_sign'"`
+    SignUrl      string `default:"https://www.hao4k.cn/k_misign-sign.html"`
+    ScoreUrl     string `default:"https://www.hao4k.cn/home.php?mod=spacecp&ac=credit&showcredit=1"`
+    KBSelector   string `default:"//em[contains(text(), 'K币')]/.."`
 }
 
-// UnmarshalYAML 从YAML反序列化成域名对象时的默认值处理
-func (hao4k *Hao4k) UnmarshalYAML(unmarshal func(interface{}) error) error {
-    type rawType Hao4k
-    raw := rawType{
-        SignSelector: "#JD_sign",
-        SignUrl:      "https://www.hao4k.cn//k_misign-sign.html",
-    }
-    if err := unmarshal(&raw); nil != err {
-        return err
-    }
-
-    *hao4k = Hao4k(raw)
-
-    return nil
-}
-
-func (hao4k *Hao4k) AutoSign(ctx context.Context, cookies string) {
+func (hao4k *Hao4k) AutoSign(ctx context.Context, cookies string) (result AutoSignResult) {
     if err := chromedp.Run(ctx); nil != err {
         log.WithFields(log.Fields{
             "err": err,
@@ -45,25 +31,51 @@ func (hao4k *Hao4k) AutoSign(ctx context.Context, cookies string) {
     // 等待登录界面完成
     if err := chromedp.Run(
         ctx,
-        chromedps.DefaultCookies(hao4k.SignUrl, cookies),
-        chromedp.WaitVisible(hao4k.SignSelector, utils.SelectorType(hao4k.SelectorType)),
+        chromedps.DefaultVisit(hao4k.SignUrl, cookies),
     ); nil != err {
         log.WithFields(log.Fields{
             "err": err,
-        }).Error("无法载入登录界面")
+        }).Error("无法载入签到界面")
     } else {
-        log.Info("成功进入登录界面")
+        log.Info("成功进入签到界面")
     }
+
+    // 签到前的积分
+    result.Before = getKB(ctx, hao4k)
 
     // 点击签到按扭
     if err := chromedp.Run(
         ctx,
-        chromedp.Click("#JD_sign", chromedp.ByID),
+        chromedp.Click(webs.ID(hao4k.SignSelector), chromedp.NodeEnabled),
     ); nil != err {
         log.WithFields(log.Fields{
             "err": err,
-        }).Error("无法载入登录界面")
+        }).Error("无法点击签到按扭")
     } else {
-        log.Info("成功进入登录界面")
+        log.Info("成功点击签到按扭")
     }
+
+    // 签到后的积分
+    result.After = getKB(ctx, hao4k)
+
+    return
+}
+
+func getKB(ctx context.Context, hao4k *Hao4k) (kb string) {
+    if err := chromedp.Run(
+        ctx,
+        utils.Sleep(),
+        chromedp.Navigate(hao4k.ScoreUrl),
+        chromedp.Text(hao4k.KBSelector, &kb),
+    ); nil != err {
+        log.WithFields(log.Fields{
+            "err": err,
+        }).Error("无法获得当前K币数据")
+    } else {
+        log.WithFields(log.Fields{
+            "currentKB": kb,
+        }).Info("成功获得当前K币数据")
+    }
+
+    return
 }

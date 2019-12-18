@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b40ba5bc-9ec5-475c-a4b4-f4ade3e30968" name="Default Changelist" comment="增加hao4k">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/store.xml" afterDir="false" />
+    <list default="true" id="b40ba5bc-9ec5-475c-a4b4-f4ade3e30968" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/utils/chromedps.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/store.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/store.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/config.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cronjob.go" beforeDir="false" afterPath="$PROJECT_DIR$/cronjob.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/etc/s6/ddns/run" beforeDir="false" afterPath="$PROJECT_DIR$/docker/etc/s6/ddns/run" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/etc/s6/ddns/setup" beforeDir="false" afterPath="$PROJECT_DIR$/docker/etc/s6/ddns/setup" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sign/hao4k.go" beforeDir="false" afterPath="$PROJECT_DIR$/sign/hao4k.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sign/sign_api.go" beforeDir="false" afterPath="$PROJECT_DIR$/sign/sign_api.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/selector_types.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/selector_types.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/selector_types.go" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,14 +57,14 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultGoTemplateProperty" value="Go File" />
-    <property name="GO_FMT" value="true" />
+    <property name="GO_FMT" value="false" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="add_unversioned_files" value="$PROJECT_DIR$/songjiang.yml" />
+    <property name="add_unversioned_files" value="$PROJECT_DIR$/songjiang.yml&#10;E:/Workspaces/Jetbrains/songjiang/application.yml" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../yangjian" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -81,6 +85,16 @@
       <working_directory value="$PROJECT_DIR$/" />
       <go_parameters value="-i" />
       <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/" />
+      <package value="ddns" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <configuration name="songjiang" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <module name="songjiang" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <go_parameters value="-i" />
+      <kind value="DIRECTORY" />
       <filePath value="$PROJECT_DIR$/" />
       <package value="ddns" />
       <directory value="$PROJECT_DIR$/" />
@@ -117,6 +131,9 @@
     <MESSAGE value="项目初始化" />
     <MESSAGE value="增加hao4k" />
     <option name="LAST_COMMIT_MESSAGE" value="增加hao4k" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
@@ -127,6 +144,10 @@
       <screen x="-1858" y="0" width="1858" height="1080" />
     </state>
     <state x="-1337" y="197" key="#Go_Modules_(vgo)/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1575260985987" />
+    <state x="127" y="15" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576290547891">
+      <screen x="63" y="0" width="1217" height="720" />
+    </state>
+    <state x="127" y="15" key="#com.intellij.execution.impl.EditConfigurationsDialog/63.0.1217.720@63.0.1217.720" timestamp="1576290547891" />
     <state x="-1249" y="267" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1575430922718">
       <screen x="-1858" y="0" width="1858" height="1080" />
     </state>
@@ -135,28 +156,77 @@
       <screen x="63" y="0" width="1217" height="720" />
     </state>
     <state x="402" y="107" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/63.0.1217.720@63.0.1217.720" timestamp="1576244346137" />
-    <state x="426" y="0" key="CommitChangelistDialog2" timestamp="1576245046205">
+    <state x="393" y="331" width="672" height="389" key="#xdebugger.evaluate" timestamp="1576566984536">
+      <screen x="63" y="0" width="1217" height="720" />
+    </state>
+    <state x="393" y="331" width="672" height="389" key="#xdebugger.evaluate/63.0.1217.720@63.0.1217.720" timestamp="1576566984536" />
+    <state x="426" y="0" key="CommitChangelistDialog2" timestamp="1576245065471">
       <screen x="63" y="0" width="1217" height="720" />
     </state>
     <state x="-1304" y="131" key="CommitChangelistDialog2/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1575280215153" />
-    <state x="426" y="0" key="CommitChangelistDialog2/63.0.1217.720@63.0.1217.720" timestamp="1576245046205" />
+    <state x="426" y="0" key="CommitChangelistDialog2/63.0.1217.720@63.0.1217.720" timestamp="1576245065471" />
     <state x="293" y="53" key="DiffContextDialog" timestamp="1576067819070">
       <screen x="63" y="0" width="1217" height="720" />
     </state>
     <state x="293" y="53" key="DiffContextDialog/63.0.1217.720@63.0.1217.720" timestamp="1576067819070" />
-    <state x="452" y="115" key="FileChooserDialogImpl" timestamp="1576040505099">
-      <screen x="63" y="0" width="1217" height="720" />
+    <state x="-1264" y="173" key="FileChooserDialogImpl" timestamp="1576645041066">
+      <screen x="-1858" y="0" width="1858" height="1080" />
     </state>
-    <state x="452" y="115" key="FileChooserDialogImpl/63.0.1217.720@63.0.1217.720" timestamp="1576040505099" />
+    <state x="-1264" y="173" key="FileChooserDialogImpl/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1576645041066" />
+    <state x="452" y="115" key="FileChooserDialogImpl/63.0.1217.720@63.0.1217.720" timestamp="1576574776204" />
+    <state width="1815" height="236" key="GridCell.Tab.0.bottom" timestamp="1576646397806">
+      <screen x="-1858" y="0" width="1858" height="1080" />
+    </state>
+    <state width="1815" height="236" key="GridCell.Tab.0.bottom/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1576646397806" />
+    <state width="1173" height="220" key="GridCell.Tab.0.bottom/63.0.1217.720@63.0.1217.720" timestamp="1576638453620" />
+    <state width="1815" height="236" key="GridCell.Tab.0.center" timestamp="1576646397806">
+      <screen x="-1858" y="0" width="1858" height="1080" />
+    </state>
+    <state width="1815" height="236" key="GridCell.Tab.0.center/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1576646397806" />
+    <state width="1173" height="220" key="GridCell.Tab.0.center/63.0.1217.720@63.0.1217.720" timestamp="1576638453620" />
+    <state width="1815" height="236" key="GridCell.Tab.0.left" timestamp="1576646397806">
+      <screen x="-1858" y="0" width="1858" height="1080" />
+    </state>
+    <state width="1815" height="236" key="GridCell.Tab.0.left/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1576646397806" />
+    <state width="1173" height="220" key="GridCell.Tab.0.left/63.0.1217.720@63.0.1217.720" timestamp="1576638453618" />
+    <state width="1815" height="236" key="GridCell.Tab.0.right" timestamp="1576646397806">
+      <screen x="-1858" y="0" width="1858" height="1080" />
+    </state>
+    <state width="1815" height="236" key="GridCell.Tab.0.right/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1576646397806" />
+    <state width="1173" height="220" key="GridCell.Tab.0.right/63.0.1217.720@63.0.1217.720" timestamp="1576638453620" />
+    <state width="1815" height="236" key="GridCell.Tab.1.bottom" timestamp="1576646409775">
+      <screen x="-1858" y="0" width="1858" height="1080" />
+    </state>
+    <state width="1815" height="236" key="GridCell.Tab.1.bottom/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1576646409775" />
+    <state width="1173" height="220" key="GridCell.Tab.1.bottom/63.0.1217.720@63.0.1217.720" timestamp="1576638453621" />
+    <state width="1815" height="236" key="GridCell.Tab.1.center" timestamp="1576646409775">
+      <screen x="-1858" y="0" width="1858" height="1080" />
+    </state>
+    <state width="1815" height="236" key="GridCell.Tab.1.center/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1576646409775" />
+    <state width="1173" height="220" key="GridCell.Tab.1.center/63.0.1217.720@63.0.1217.720" timestamp="1576638453621" />
+    <state width="1815" height="236" key="GridCell.Tab.1.left" timestamp="1576646409774">
+      <screen x="-1858" y="0" width="1858" height="1080" />
+    </state>
+    <state width="1815" height="236" key="GridCell.Tab.1.left/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1576646409774" />
+    <state width="1173" height="220" key="GridCell.Tab.1.left/63.0.1217.720@63.0.1217.720" timestamp="1576638453621" />
+    <state width="1815" height="236" key="GridCell.Tab.1.right" timestamp="1576646409775">
+      <screen x="-1858" y="0" width="1858" height="1080" />
+    </state>
+    <state width="1815" height="236" key="GridCell.Tab.1.right/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1576646409775" />
+    <state width="1173" height="220" key="GridCell.Tab.1.right/63.0.1217.720@63.0.1217.720" timestamp="1576638453621" />
     <state x="173" y="2" key="SettingsEditor" timestamp="1576244959952">
       <screen x="63" y="0" width="1217" height="720" />
     </state>
     <state x="173" y="2" key="SettingsEditor/63.0.1217.720@63.0.1217.720" timestamp="1576244959952" />
-    <state x="404" y="181" key="Vcs.Push.Dialog.v2" timestamp="1576204574243">
+    <state x="404" y="181" key="Vcs.Push.Dialog.v2" timestamp="1576245067839">
       <screen x="63" y="0" width="1217" height="720" />
     </state>
     <state x="-1337" y="272" key="Vcs.Push.Dialog.v2/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1575280218858" />
-    <state x="404" y="181" key="Vcs.Push.Dialog.v2/63.0.1217.720@63.0.1217.720" timestamp="1576204574243" />
+    <state x="404" y="181" key="Vcs.Push.Dialog.v2/63.0.1217.720@63.0.1217.720" timestamp="1576245067839" />
+    <state width="615" height="367" key="XDebugger.FullValuePopup" timestamp="1576290590337">
+      <screen x="63" y="0" width="1217" height="720" />
+    </state>
+    <state width="615" height="367" key="XDebugger.FullValuePopup/63.0.1217.720@63.0.1217.720" timestamp="1576290590337" />
     <state x="334" y="37" width="672" height="678" key="search.everywhere.popup" timestamp="1576044314099">
       <screen x="63" y="0" width="1217" height="720" />
     </state>
