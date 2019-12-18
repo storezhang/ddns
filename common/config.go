@@ -11,11 +11,6 @@ type Config struct {
     Apps      []App
 }
 
-// ServerChan ServerChan推送设置
-type ServerChan struct {
-    ScKey string
-}
-
 // Songjiang 程序整体配置
 type Songjiang struct {
     Debug          bool   `default:"false"`

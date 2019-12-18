@@ -10,6 +10,8 @@ import (
     log `github.com/sirupsen/logrus`
     `github.com/tj/go-naturaldate`
 
+    `github.com/parnurzeal/gorequest`
+
     `songjiang/common`
     `songjiang/sign`
 )
@@ -25,11 +27,17 @@ type SongjiangJob struct {
 var crontab *cron.Cron
 var jobCache map[string]cron.EntryID
 
+var req *gorequest.SuperAgent
+
 func initJobCache() {
     jobCache = make(map[string]cron.EntryID)
 }
 func init() {
+    // 初始化Http客户端
+    req = gorequest.New()
+    // 初始化随机数
     rand.Seed(time.Now().UnixNano())
+    // 初始化缓存
     initJobCache()
 
     crontab = cron.New(cron.WithSeconds())
@@ -120,7 +128,11 @@ func addJob(job *SongjiangJob) (jobId cron.EntryID) {
             "spec":  spec,
             "jobId": jobId,
         }).Info("开始执行签到任务")
+
         result := job.signer.AutoSign(job.ctx, job.app.Cookies)
+        // 通知用户，如果有设置消息推送
+        notify(job.app, result)
+
         log.WithFields(log.Fields{
             "name":   job.app.Name,
             "start":  job.app.StartTime,
@@ -151,4 +163,16 @@ func addJob(job *SongjiangJob) (jobId cron.EntryID) {
     }
 
     return
+}
+
+func notify(app *common.App, result sign.AutoSignResult) {
+    for _, ch := range app.ServerChans {
+        req.Post(fmt.Sprintf("https://sc.ftqq.com/%s.send", ch)).
+            Type("multipart").
+            Send(common.ServerChanRequest{
+                Text: fmt.Sprintf("任务执行完成：%s - %s", app.Name, result.Msg),
+                Desp: fmt.Sprintf("执行后的结果：%s\n执行前的状态：%s", result.After, result.Before),
+            }).
+            End()
+    }
 }

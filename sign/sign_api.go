@@ -5,8 +5,10 @@ import (
 )
 
 type AutoSignResult struct {
-    Before string
-    After  string
+    Success bool
+    Before  string
+    After   string
+    Msg     string
 }
 
 // Signer 自动签到接口

@@ -6,17 +6,17 @@ import (
     `github.com/chromedp/chromedp`
     log `github.com/sirupsen/logrus`
     `github.com/storezhang/gos/chromedps`
-    `github.com/storezhang/gos/webs`
 
     `songjiang/utils`
 )
 
 // Hao4k Hao4k对象
 type Hao4k struct {
-    SignSelector string `default:"'#JD_sign'"`
-    SignUrl      string `default:"https://www.hao4k.cn/k_misign-sign.html"`
-    ScoreUrl     string `default:"https://www.hao4k.cn/home.php?mod=spacecp&ac=credit&showcredit=1"`
-    KBSelector   string `default:"//em[contains(text(), 'K币')]/.."`
+    SignSelector   string `default:"'#JD_sign'"`
+    SignedSelector string `default:"'.btn .btnvisted'"`
+    SignUrl        string `default:"https://www.hao4k.cn/k_misign-sign.html"`
+    ScoreUrl       string `default:"https://www.hao4k.cn/home.php?mod=spacecp&ac=credit&showcredit=1"`
+    KBSelector     string `default:"//em[contains(text(), 'K币')]/.."`
 }
 
 func (hao4k *Hao4k) AutoSign(ctx context.Context, cookies string) (result AutoSignResult) {
@@ -28,7 +28,7 @@ func (hao4k *Hao4k) AutoSign(ctx context.Context, cookies string) (result AutoSi
         log.Info("启动浏览器成功")
     }
 
-    // 等待登录界面完成
+    // 等待签到界面完成
     if err := chromedp.Run(
         ctx,
         chromedps.DefaultVisit(hao4k.SignUrl, cookies),
@@ -40,23 +40,46 @@ func (hao4k *Hao4k) AutoSign(ctx context.Context, cookies string) (result AutoSi
         log.Info("成功进入签到界面")
     }
 
-    // 签到前的积分
+    // 签到前的K币
     result.Before = getKB(ctx, hao4k)
-
-    // 点击签到按扭
+    // 确认是否已经签到
     if err := chromedp.Run(
         ctx,
-        chromedp.Click(webs.ID(hao4k.SignSelector), chromedp.NodeEnabled),
+        chromedps.DefaultSleep(),
+        chromedp.Query(hao4k.SignedSelector),
     ); nil != err {
         log.WithFields(log.Fields{
             "err": err,
         }).Error("无法点击签到按扭")
     } else {
-        log.Info("成功点击签到按扭")
+        result.Success = true
+        result.After = result.Before
+        result.Msg = "已签到，明天再来签到吧"
+
+        log.WithFields(log.Fields{
+            "cookies": cookies,
+        }).Info("已签到，明天再来签到吧")
+        return
     }
 
-    // 签到后的积分
-    result.After = getKB(ctx, hao4k)
+    // 点击签到按扭
+    if err := chromedp.Run(
+        ctx,
+        chromedps.DefaultSleep(),
+        chromedp.Navigate(hao4k.SignUrl),
+        chromedps.DefaultSleep(),
+        chromedp.Click(hao4k.SignSelector, chromedp.NodeEnabled),
+    ); nil != err {
+        log.WithFields(log.Fields{
+            "err": err,
+        }).Error("无法点击签到按扭")
+    } else {
+        // 签到后的K币
+        result.Success = true
+        result.After = getKB(ctx, hao4k)
+        result.Msg = "签到成功"
+        log.Info("成功点击签到按扭")
+    }
 
     return
 }
