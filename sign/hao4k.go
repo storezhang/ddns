@@ -3,6 +3,7 @@ package sign
 import (
     `context`
 
+    `github.com/chromedp/cdproto/cdp`
     `github.com/chromedp/chromedp`
     log `github.com/sirupsen/logrus`
     `github.com/storezhang/gos/chromedps`
@@ -43,15 +44,19 @@ func (hao4k *Hao4k) AutoSign(ctx context.Context, cookies string) (result AutoSi
     // 签到前的K币
     result.Before = getKB(ctx, hao4k)
     // 确认是否已经签到
+    var signedNodes []*cdp.Node
     if err := chromedp.Run(
         ctx,
         chromedps.DefaultSleep(),
-        chromedp.Query(hao4k.SignedSelector),
+        chromedp.Nodes(hao4k.SignedSelector, &signedNodes, chromedp.ByQueryAll),
     ); nil != err {
         log.WithFields(log.Fields{
             "err": err,
-        }).Error("无法点击签到按扭")
+        }).Error("无法查询已签到按扭")
     } else {
+        log.Info("查询到已签到按扭")
+    }
+    if nil != signedNodes {
         result.Success = true
         result.After = result.Before
         result.Msg = "已签到，明天再来签到吧"
