@@ -2,20 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b40ba5bc-9ec5-475c-a4b4-f4ade3e30968" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/utils/chromedps.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/store.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/store.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.drone.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.drone.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cronjob.go" beforeDir="false" afterPath="$PROJECT_DIR$/cronjob.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/etc/s6/ddns/run" beforeDir="false" afterPath="$PROJECT_DIR$/docker/etc/s6/ddns/run" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/etc/s6/ddns/setup" beforeDir="false" afterPath="$PROJECT_DIR$/docker/etc/s6/ddns/setup" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sign/hao4k.go" beforeDir="false" afterPath="$PROJECT_DIR$/sign/hao4k.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sign/sign_api.go" beforeDir="false" afterPath="$PROJECT_DIR$/sign/sign_api.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/selector_types.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +27,7 @@
       </GitPushTagMode>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="IgnoredFileRootStore">
     <option name="generatedRoots">
@@ -48,6 +38,7 @@
   </component>
   <component name="ProjectId" id="1UExnkJiPqw1e6ld5GwTH60cOKc" />
   <component name="ProjectLevelVcsManager">
+    <OptionsSetting value="false" id="Update" />
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -160,11 +151,11 @@
       <screen x="63" y="0" width="1217" height="720" />
     </state>
     <state x="393" y="331" width="672" height="389" key="#xdebugger.evaluate/63.0.1217.720@63.0.1217.720" timestamp="1576566984536" />
-    <state x="426" y="0" key="CommitChangelistDialog2" timestamp="1576245065471">
+    <state x="426" y="0" key="CommitChangelistDialog2" timestamp="1576665412332">
       <screen x="63" y="0" width="1217" height="720" />
     </state>
     <state x="-1304" y="131" key="CommitChangelistDialog2/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1575280215153" />
-    <state x="426" y="0" key="CommitChangelistDialog2/63.0.1217.720@63.0.1217.720" timestamp="1576245065471" />
+    <state x="426" y="0" key="CommitChangelistDialog2/63.0.1217.720@63.0.1217.720" timestamp="1576665412332" />
     <state x="293" y="53" key="DiffContextDialog" timestamp="1576067819070">
       <screen x="63" y="0" width="1217" height="720" />
     </state>
@@ -218,15 +209,19 @@
       <screen x="63" y="0" width="1217" height="720" />
     </state>
     <state x="173" y="2" key="SettingsEditor/63.0.1217.720@63.0.1217.720" timestamp="1576244959952" />
-    <state x="404" y="181" key="Vcs.Push.Dialog.v2" timestamp="1576245067839">
+    <state x="404" y="181" key="Vcs.Push.Dialog.v2" timestamp="1576665417230">
       <screen x="63" y="0" width="1217" height="720" />
     </state>
     <state x="-1337" y="272" key="Vcs.Push.Dialog.v2/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1575280218858" />
-    <state x="404" y="181" key="Vcs.Push.Dialog.v2/63.0.1217.720@63.0.1217.720" timestamp="1576245067839" />
+    <state x="404" y="181" key="Vcs.Push.Dialog.v2/63.0.1217.720@63.0.1217.720" timestamp="1576665417230" />
     <state width="615" height="367" key="XDebugger.FullValuePopup" timestamp="1576290590337">
       <screen x="63" y="0" width="1217" height="720" />
     </state>
     <state width="615" height="367" key="XDebugger.FullValuePopup/63.0.1217.720@63.0.1217.720" timestamp="1576290590337" />
+    <state x="-1120" y="456" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1576719219658">
+      <screen x="-1858" y="0" width="1858" height="1080" />
+    </state>
+    <state x="-1120" y="456" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1576719219658" />
     <state x="334" y="37" width="672" height="678" key="search.everywhere.popup" timestamp="1576044314099">
       <screen x="63" y="0" width="1217" height="720" />
     </state>
