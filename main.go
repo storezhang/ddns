@@ -93,13 +93,15 @@ func ctx(songjiang *common.Songjiang) context.Context {
     )
     // defer cancel()
 
-    if duration, err := time.ParseDuration(songjiang.BrowserTimeout); nil != err {
-        log.WithFields(log.Fields{
-            "browserTimeout": songjiang.BrowserTimeout,
-        }).Warn("browserTimeout配置有错误")
-    } else {
-        ctx, _ = context.WithTimeout(ctx, duration)
-        // defer cancel()
+    if !songjiang.Debug {
+        if duration, err := time.ParseDuration(songjiang.BrowserTimeout); nil != err {
+            log.WithFields(log.Fields{
+                "browserTimeout": songjiang.BrowserTimeout,
+            }).Warn("browserTimeout配置有错误")
+        } else {
+            ctx, _ = context.WithTimeout(ctx, duration)
+            // defer cancel()
+        }
     }
 
     return ctx
