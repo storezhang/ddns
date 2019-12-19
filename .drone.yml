@@ -16,10 +16,6 @@ steps:
       - name: deps
         path: /go
     commands:
-      - export GOPROXY=https://goproxy.io
-      - go get -u github.com/gobuffalo/packr/v2/packr2
-      - packr2 clean
-      - packr2
       - CGO_ENABLED=0 GOOS=linux go build -ldflags '-extldflags "-static"' -tags=jsoniter -a -installsuffix cgo -o $$DRONE_REPO_NAME .
 
 
