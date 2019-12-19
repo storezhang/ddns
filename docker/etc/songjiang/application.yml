@@ -1,0 +1,9 @@
+songjiang:
+  debug: false
+
+apps:
+  - name: Hao4k自动签到领积分
+    type: hao4k
+    serverChans:
+      - scKey: ${SCKEY}
+    cookies: ${COOKIES}

@@ -1,4 +1,4 @@
-FROM storezhang/chromeium
+FROM storezhang/chromium
 
 
 MAINTAINER storezhang "storezhang@gmail.com"
@@ -7,12 +7,13 @@ LABEL Description="基于Alpine的自动签到镜像，支持Hao4K这类主流�
 
 
 ENV USERNAME songjiang
+ENV ROOT_DIR /songjiang
 ENV UID 1000
 ENV GID 1000
 
 
-WORKDIR /
-VOLUME ["/conf"]
+WORKDIR ${ROOT_DIR}
+VOLUME ${ROOT_DIR}
 
 
 ADD songjiang /opt
