@@ -1,7 +1,7 @@
 #!/bin/sh
 
-if [ "${USERNAME}" != "ddns" ]; then
-  sed -i -e "s/^ddns\:/${USERNAME}\:/g" /etc/passwd
+if [ "${USERNAME}" != "songjiang" ]; then
+  sed -i -e "s/^songjiang\:/${USERNAME}\:/g" /etc/passwd
 fi
 
 if [ -z "${GID}" ]; then
