@@ -2,4 +2,8 @@
 
 [[ -f ./setup ]] && source ./setup
 
-exec su-exec "${USERNAME}" /opt/songjiang --conf /conf/application.yml
+# shellcheck disable=SC2066
+for conf_file in "${ROOT_DIR}/application.*"; do
+    [ -e "$conf_file" ] && exec su-exec "${USERNAME}" /opt/songjiang --conf "${conf_file}" || echo "没找到配置文件"
+    break
+done

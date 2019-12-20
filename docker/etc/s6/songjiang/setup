@@ -1,7 +1,10 @@
 #!/bin/sh
 
-if [ ! -f /conf/application.yml ]; then
-  cp /etc/songjiang/application.yml /conf/application.yml
+if ls "${ROOT_DIR}/application.*" 1 > /dev/null 2>&1; then
+  echo "已存在配置文件，不复制配置文件模板"
+else
+  echo "没有找到配置文件，复制配置文件模板"
+  cp /etc/songjiang/application.* /conf/application.*
 fi
 
-chown -R "${USERNAME}":"${USERNAME}" /conf
+chown -R "${USERNAME}":"${USERNAME}" "${ROOT_DIR}"
