@@ -6,6 +6,7 @@ import (
     `math/rand`
     `time`
 
+    `github.com/chromedp/chromedp`
     `github.com/robfig/cron/v3`
     log `github.com/sirupsen/logrus`
     `github.com/tj/go-naturaldate`
@@ -18,7 +19,6 @@ import (
 
 // SongjiangJob 动态域名解析任务
 type SongjiangJob struct {
-    ctx       context.Context
     signer    sign.Signer
     songjiang *common.Songjiang
     app       *common.App
@@ -119,30 +119,11 @@ func addJob(job *SongjiangJob) (jobId cron.EntryID) {
         runTime.Day(), runTime.Month(), runTime.Weekday(),
     )
 
-    if id, err := crontab.AddFunc(spec, func() {
-        log.WithFields(log.Fields{
-            "name":  job.app.Name,
-            "start": job.app.StartTime,
-            "end":   job.app.EndTime,
-            "type":  job.app.Type,
-            "spec":  spec,
-            "jobId": jobId,
-        }).Info("开始执行签到任务")
-
-        result := job.signer.AutoSign(job.ctx, job.app.Cookies)
-        // 通知用户，如果有设置消息推送
-        notify(job.app, result)
-
-        log.WithFields(log.Fields{
-            "name":   job.app.Name,
-            "start":  job.app.StartTime,
-            "end":    job.app.EndTime,
-            "type":   job.app.Type,
-            "spec":   spec,
-            "jobId":  jobId,
-            "before": result.Before,
-            "after":  result.After,
-        }).Info("成功签到任务")
+    if id, err := crontab.AddJob(spec, &AutoSignJob{
+        signer:    job.signer,
+        app:       job.app,
+        songjiang: job.songjiang,
+        cookies:   job.app.Cookies,
     }); nil != err {
         log.WithFields(log.Fields{
             "name":  job.app.Name,
@@ -165,14 +146,92 @@ func addJob(job *SongjiangJob) (jobId cron.EntryID) {
     return
 }
 
-func notify(app *common.App, result sign.AutoSignResult) {
-    for _, ch := range app.ServerChans {
-        req.Post(fmt.Sprintf("https://sc.ftqq.com/%s.send", ch)).
-            Type("multipart").
+// AutoSignJob 自动签到Job
+type AutoSignJob struct {
+    signer    sign.Signer
+    app       *common.App
+    songjiang *common.Songjiang
+    cookies   string
+}
+
+func (job *AutoSignJob) Run() {
+    opts := append(
+        chromedp.DefaultExecAllocatorOptions[:],
+        chromedp.DisableGPU,
+        chromedp.NoDefaultBrowserCheck,
+        chromedp.NoSandbox,
+        chromedp.Flag("ignore-certificate-errors", true),
+    )
+    if job.songjiang.Debug {
+        opts = append(opts, chromedp.Flag("headless", false))
+        opts = append(opts, chromedp.Flag("start-maximized", true))
+    } else {
+        opts = append(opts, chromedp.Headless)
+        opts = append(opts, chromedp.WindowSize(job.songjiang.BrowserWidth, job.songjiang.BrowserHeight))
+    }
+
+    allocCtx, cancel := chromedp.NewExecAllocator(context.Background(), opts...)
+    defer cancel()
+
+    ctx, cancel := chromedp.NewContext(
+        allocCtx,
+        chromedp.WithLogf(log.Printf),
+        chromedp.WithDebugf(log.Debugf),
+        chromedp.WithErrorf(log.Errorf),
+    )
+    defer cancel()
+
+    log.WithFields(log.Fields{
+        "name":  job.app.Name,
+        "start": job.app.StartTime,
+        "end":   job.app.EndTime,
+        "type":  job.app.Type,
+    }).Info("开始执行签到任务")
+
+    result := job.signer.AutoSign(ctx, job.app.Cookies)
+    // 通知用户，如果有设置消息推送
+    notify(job.app, job.songjiang, result)
+
+    log.WithFields(log.Fields{
+        "name":   job.app.Name,
+        "start":  job.app.StartTime,
+        "end":    job.app.EndTime,
+        "type":   job.app.Type,
+        "before": result.Before,
+        "after":  result.After,
+    }).Info("成功签到任务")
+}
+
+func notify(app *common.App, songjiang *common.Songjiang, result sign.AutoSignResult) {
+    if nil != app.Chans && 0 < len(app.Chans) {
+        notifyToUser(app.Chans, app, result)
+    } else {
+        notifyToUser(songjiang.Chans, app, result)
+    }
+}
+
+func notifyToUser(chans []common.ServerChan, app *common.App, result sign.AutoSignResult) {
+    for _, ch := range chans {
+        rsp, body, errs := req.Post(fmt.Sprintf("https://sc.ftqq.com/%s.send", ch.Key)).
+            Type("form").
             Send(common.ServerChanRequest{
                 Text: fmt.Sprintf("任务执行完成：%s - %s", app.Name, result.Msg),
                 Desp: fmt.Sprintf("执行后的结果：%s\n执行前的状态：%s", result.After, result.Before),
-            }).
-            End()
+            }).End()
+
+        if nil != errs {
+            log.WithFields(log.Fields{
+                "name": app.Name,
+                "chan": ch.Key,
+                "rsp":  rsp,
+                "body": body,
+                "errs": errs,
+            }).Info("ServerChan推送消息失败")
+        } else {
+            log.WithFields(log.Fields{
+                "name": app.Name,
+                "chan": ch.Key,
+            }).Info("ServerChan推送消息成功")
+        }
     }
 }

@@ -1,9 +1,11 @@
 songjiang:
   debug: false
+  chans:
+    - key: ${SERVERCHAN_SCKEY}
 
 apps:
   - name: Hao4k自动签到领积分
     type: hao4k
-    serverChans:
-      - scKey: ${SCKEY}
+    chans:
+      - key: ${SERVERCHAN_SCKEY}
     cookies: ${COOKIES}

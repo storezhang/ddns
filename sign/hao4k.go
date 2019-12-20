@@ -13,7 +13,7 @@ import (
 // Hao4k Hao4k对象
 type Hao4k struct {
     SignSelector   string `default:"'#JD_sign'"`
-    SignedSelector string `default:"'.btn .btnvisted'"`
+    SignedSelector string `default:"//span[contains(@class, 'btn btnvisted')]"`
     SignUrl        string `default:"https://www.hao4k.cn/k_misign-sign.html"`
     ScoreUrl       string `default:"https://www.hao4k.cn/home.php?mod=spacecp&ac=credit&showcredit=1"`
     KBSelector     string `default:"//em[contains(text(), 'K币')]/.."`
@@ -43,7 +43,17 @@ func (hao4k *Hao4k) AutoSign(ctx context.Context, cookies string) (result AutoSi
     // 签到前的K币
     result.Before = getKB(ctx, hao4k)
     // 确认是否已经签到
-    if display, err := utils.CheckDisplay(ctx, hao4k.SignUrl, hao4k.SignedSelector); nil != err && display {
+    if err := chromedp.Run(
+        ctx,
+        chromedps.DefaultSleep(),
+        chromedps.TasksWithTimeOut(&ctx, "10s", chromedp.Tasks{
+            chromedp.Navigate(hao4k.SignUrl),
+            chromedp.WaitVisible(hao4k.SignedSelector),
+        }),
+    ); nil != err {
+        log.Info("还没有签到，继续执行自动签到任务")
+    } else {
+        // 签到后的K币
         result.Success = true
         result.After = result.Before
         result.Msg = "已签到，明天再来签到吧"
@@ -51,6 +61,7 @@ func (hao4k *Hao4k) AutoSign(ctx context.Context, cookies string) (result AutoSi
         log.WithFields(log.Fields{
             "cookies": cookies,
         }).Info("已签到，明天再来签到吧")
+
         return
     }
 
