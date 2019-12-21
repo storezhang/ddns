@@ -24,7 +24,7 @@
 ```
 sudo docker run \
   --net=host \
-  --volume=${YOUR_DDNS_DIR}:/conf \
+  --volume=${YOUR_CONF_DIR}:/songjiang \
   --restart=always \
   --detach=true \
   --name=songjiang \
