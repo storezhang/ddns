@@ -2,8 +2,10 @@
 
 [[ -f ./setup ]] && source ./setup
 
-# shellcheck disable=SC2066
-for conf_file in "${ROOT_DIR}/application.*"; do
-    [ -e "$conf_file" ] && exec su-exec "${USERNAME}" /opt/songjiang --conf "${conf_file}" || echo "没找到配置文件"
-    break
+# shellcheck disable=SC2045
+# shellcheck disable=SC2006
+for conf_file in `ls "${ROOT_DIR}"/application.*`; do
+  echo "使用配置文件${conf_file}运行"
+  [ -e "${conf_file}" ] && "exec su-exec ${USERNAME} /opt/songjiang --conf ${conf_file}"
+  break
 done
