@@ -27,7 +27,7 @@ RUN set -ex \
     \
     && apk update \
     \
-    && mkdir -p /conf \
+    && mkdir -p ${ROOT_DIR} \
     && chmod +x /usr/bin/entrypoint \
     && chmod +x /etc/s6/.s6-svscan/* \
     && chmod +x /etc/s6/songjiang/* \
