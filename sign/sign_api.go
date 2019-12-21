@@ -4,6 +4,7 @@ import (
     "context"
 )
 
+// AutoSignResult 自动签到结果
 type AutoSignResult struct {
     Success bool
     Before  string
