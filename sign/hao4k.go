@@ -19,6 +19,7 @@ type Hao4k struct {
     KBSelector     string `default:"//em[contains(text(), 'K币')]/.."`
 }
 
+// AutoSign Hao4K的自动签到任务
 func (hao4k *Hao4k) AutoSign(ctx context.Context, cookies string) (result AutoSignResult) {
     if err := chromedp.Run(ctx); nil != err {
         log.WithFields(log.Fields{

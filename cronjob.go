@@ -154,6 +154,7 @@ type AutoSignJob struct {
     cookies   string
 }
 
+// Run 自动签到执行任务
 func (job *AutoSignJob) Run() {
     opts := append(
         chromedp.DefaultExecAllocatorOptions[:],
