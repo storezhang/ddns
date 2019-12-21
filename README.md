@@ -23,7 +23,6 @@
 直接使用命令行执行
 ```
 sudo docker run \
-  --net=host \
   --volume=${YOUR_CONF_DIR}:/songjiang \
   --restart=always \
   --detach=true \
