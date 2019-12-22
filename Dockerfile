@@ -31,8 +31,9 @@ RUN set -ex \
     && chmod +x /usr/bin/entrypoint \
     && chmod +x /etc/s6/.s6-svscan/* \
     && chmod +x /etc/s6/songjiang/* \
+    && chmod +x /opt/songjiang \
     \
-    && apk --no-cache add bash s6 \
+    && apk --no-cache add bash s6 su-exec \
     && rm -rf /var/cache/apk/*
 
 
