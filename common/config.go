@@ -19,7 +19,7 @@ type Songjiang struct {
     Template      Template
     BrowserWidth  int    `default:"1920"`
     BrowserHeight int    `default:"1080"`
-    Redo          string `default:"6m"`
+    Redo          string `default:"30m"`
 }
 
 // App 应用配置
