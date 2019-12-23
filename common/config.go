@@ -19,7 +19,7 @@ type Songjiang struct {
     Template      Template
     BrowserWidth  int    `default:"1920"`
     BrowserHeight int    `default:"1080"`
-    Redo          string `default:"5s"`
+    Redo          string `default:"6m"`
 }
 
 // App 应用配置
@@ -30,7 +30,7 @@ type App struct {
     Type      string `default:"hao4k"`
     Cookies   string
     StartTime string `default:"8:00"`
-    EndTime   string `default:"18:00"`
+    EndTime   string `default:"23:00"`
 }
 
 // Template 模板配置
