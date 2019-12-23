@@ -13,7 +13,7 @@
           <list>
             <DockerVolumeBindingImpl>
               <option name="containerPath" value="/songjiang" />
-              <option name="hostPath" value="E:\Workspaces\Jetbrains\songjiang" />
+              <option name="hostPath" value="C:\Users\store\Desktop" />
             </DockerVolumeBindingImpl>
           </list>
         </option>

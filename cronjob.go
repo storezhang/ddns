@@ -4,6 +4,7 @@ import (
     `context`
     `fmt`
     `math/rand`
+    `strings`
     `time`
 
     `github.com/chromedp/chromedp`
@@ -204,14 +205,37 @@ func (job *AutoSignJob) Run() {
 }
 
 func notify(app *common.App, songjiang *common.Songjiang, result sign.AutoSignResult) {
+    var serverChans []common.ServerChan
     if nil != app.Chans && 0 < len(app.Chans) {
-        notifyToUser(app.Chans, app, result)
+        serverChans = app.Chans
+    } else if nil != songjiang.Chans && 0 < len(songjiang.Chans) {
+        serverChans = songjiang.Chans
     } else {
-        notifyToUser(songjiang.Chans, app, result)
+        return
     }
+
+    var titleTemplate string
+    var contentTemplate string
+    if "" == strings.TrimSpace(app.Template.Title) && "" == strings.TrimSpace(app.Template.Context) {
+        titleTemplate = app.Template.Title
+        contentTemplate = app.Template.Context
+    } else if "" == strings.TrimSpace(songjiang.Template.Title) && "" == strings.TrimSpace(songjiang.Template.Context) {
+        titleTemplate = songjiang.Template.Title
+        contentTemplate = songjiang.Template.Context
+    } else {
+        return
+    }
+
+    notifyToUser(serverChans, titleTemplate, contentTemplate, app, result)
 }
 
-func notifyToUser(chans []common.ServerChan, app *common.App, result sign.AutoSignResult) {
+func notifyToUser(
+    chans []common.ServerChan,
+    titleTemplate string,
+    contentTemplate string,
+    app *common.App,
+    result sign.AutoSignResult,
+) {
     for _, ch := range chans {
         rsp, body, errs := req.Post(fmt.Sprintf("https://sc.ftqq.com/%s.send", ch.Key)).
             Type("form").
