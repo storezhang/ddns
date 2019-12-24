@@ -3,7 +3,9 @@ module songjiang
 go 1.13
 
 require (
+	github.com/CloudyKit/fastprinter v0.0.0-20170127035650-74b38d55f37a // indirect
 	github.com/chromedp/chromedp v0.5.2
+	github.com/cloudykit/jet v2.1.2+incompatible
 	github.com/elazarl/goproxy v0.0.0-20191011121108-aa519ddbe484 // indirect
 	github.com/jinzhu/configor v1.1.1
 	github.com/kr/pretty v0.1.0 // indirect

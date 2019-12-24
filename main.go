@@ -33,6 +33,10 @@ func main() {
     } else {
         log.SetLevel(logLevel)
     }
+    // 处理Debug
+    if songjiang.Debug {
+        songjiang.Redo = "5s"
+    }
 
     for _, app := range conf.Apps {
         var signer sign.Signer

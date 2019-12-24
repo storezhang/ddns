@@ -1,9 +1,13 @@
 github.com/BurntSushi/toml v0.3.1 h1:WXkYYl6Yr3qBf1K79EBnL4mak0OimBfB0XUf9Vl28OQ=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
+github.com/CloudyKit/fastprinter v0.0.0-20170127035650-74b38d55f37a h1:3SgJcK9l5uPdBC/X17wanyJAMxM33+4ZhEIV96MIH8U=
+github.com/CloudyKit/fastprinter v0.0.0-20170127035650-74b38d55f37a/go.mod h1:EFZQ978U7x8IRnstaskI3IysnWY5Ao3QgZUKOXlsAdw=
 github.com/chromedp/cdproto v0.0.0-20191114225735-6626966fbae4 h1:QD3KxSJ59L2lxG6MXBjNHxiQO2RmxTQ3XcK+wO44WOg=
 github.com/chromedp/cdproto v0.0.0-20191114225735-6626966fbae4/go.mod h1:PfAWWKJqjlGFYJEidUM6aVIWPr0EpobeyVWEEmplX7g=
 github.com/chromedp/chromedp v0.5.2 h1:W8xBXQuUnd2dZK0SN/lyVwsQM7KgW+kY5HGnntms194=
 github.com/chromedp/chromedp v0.5.2/go.mod h1:rsTo/xRo23KZZwFmWk2Ui79rBaVRRATCjLzNQlOFSiA=
+github.com/cloudykit/jet v2.1.2+incompatible h1:Z+8L4sfv9F6V+ywdJviX1QuASNt51AOjhT3n5GO9Y1A=
+github.com/cloudykit/jet v2.1.2+incompatible/go.mod h1:HpZl0W+o4aDYef6UEJlVX9/wN8xiV/Bu1YhVDEdF3PQ=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=

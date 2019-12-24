@@ -1,8 +1,10 @@
 package main
 
 import (
+    `bytes`
     `context`
     `fmt`
+    `html/template`
     `math/rand`
     `strings`
     `time`
@@ -192,7 +194,7 @@ func (job *AutoSignJob) Run() {
 
     result := job.signer.AutoSign(ctx, job.app.Cookies)
     // 通知用户，如果有设置消息推送
-    notify(job.app, job.songjiang, result)
+    notify(job.app, job.songjiang, &result)
 
     log.WithFields(log.Fields{
         "name":   job.app.Name,
@@ -204,7 +206,7 @@ func (job *AutoSignJob) Run() {
     }).Info("成功签到任务")
 }
 
-func notify(app *common.App, songjiang *common.Songjiang, result sign.AutoSignResult) {
+func notify(app *common.App, songjiang *common.Songjiang, result *sign.AutoSignResult) {
     var serverChans []common.ServerChan
     if nil != app.Chans && 0 < len(app.Chans) {
         serverChans = app.Chans
@@ -229,19 +231,31 @@ func notify(app *common.App, songjiang *common.Songjiang, result sign.AutoSignRe
     notifyToUser(serverChans, titleTemplate, contentTemplate, app, result)
 }
 
+type notifyData struct {
+    App    *common.App
+    Result *sign.AutoSignResult
+}
+
 func notifyToUser(
     chans []common.ServerChan,
     titleTemplate string,
     contentTemplate string,
     app *common.App,
-    result sign.AutoSignResult,
+    result *sign.AutoSignResult,
 ) {
+    data := &notifyData{
+        App:    app,
+        Result: result,
+    }
+    title := render("title", titleTemplate, data)
+    desp := render("desp", contentTemplate, data)
+    // 真正发推送
     for _, ch := range chans {
         rsp, body, errs := req.Post(fmt.Sprintf("https://sc.ftqq.com/%s.send", ch.Key)).
             Type("form").
             Send(common.ServerChanRequest{
-                Text: fmt.Sprintf("任务执行完成：%s - %s", app.Name, result.Msg),
-                Desp: fmt.Sprintf("执行后的结果：%s\n执行前的状态：%s", result.After, result.Before),
+                Text: title,
+                Desp: desp,
             }).End()
 
         if nil != errs {
@@ -259,4 +273,19 @@ func notifyToUser(
             }).Info("ServerChan推送消息成功")
         }
     }
+}
+
+func render(name string, tpl string, data interface{}) (result string) {
+    tmpl, err := template.New(name).Parse(tpl)
+    if err != nil {
+        result = ""
+    }
+    buf := new(bytes.Buffer)
+    err = tmpl.Execute(buf, data)
+    if err != nil {
+        result = ""
+    }
+    result = buf.String()
+
+    return
 }

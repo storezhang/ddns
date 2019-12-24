@@ -36,6 +36,6 @@ type App struct {
 // Template 模板配置
 // 用于：推送
 type Template struct {
-    Title   string
-    Context string
+    Title   string `default"'签到后：{{.Result.After}}，签到前{{.Result.Before}}'"`
+    Context string `default"'任务名称：{{.App.Name}} {{.Result.Msg}}'"`
 }
