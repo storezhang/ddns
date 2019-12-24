@@ -19,6 +19,7 @@ func main() {
     conf := &common.Config{}
     configor.New(&configor.Config{
         AutoReload:         true,
+        Silent:             true,
         AutoReloadInterval: time.Minute,
     }).Load(conf, *confFilepath, "application.json", "application.ini")
 
