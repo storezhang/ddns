@@ -3,13 +3,20 @@
     <deployment type="dockerfile">
       <settings>
         <option name="buildCliOptions" value="" />
-        <option name="buildOnly" value="true" />
         <option name="command" value="" />
-        <option name="containerName" value="" />
+        <option name="containerName" value="songjiang" />
         <option name="entrypoint" value="" />
-        <option name="imageTag" value="" />
+        <option name="imageTag" value="songjiang:1.0.2" />
         <option name="commandLineOptions" value="" />
         <option name="sourceFilePath" value="Dockerfile" />
+        <option name="volumeBindings">
+          <list>
+            <DockerVolumeBindingImpl>
+              <option name="containerPath" value="/songjiang" />
+              <option name="hostPath" value="C:\Users\store\Desktop" />
+            </DockerVolumeBindingImpl>
+          </list>
+        </option>
       </settings>
     </deployment>
     <method v="2" />
