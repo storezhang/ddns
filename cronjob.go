@@ -69,6 +69,7 @@ func (job *SongjiangJob) Run() {
     }
 }
 
+// addJob 确定任务执行时间，在给定的时间内，随机给出执行时间
 func addJob(job *SongjiangJob) (jobId cron.EntryID) {
     var startNano int64
     var endNano int64
