@@ -3,9 +3,7 @@ module songjiang
 go 1.13
 
 require (
-	github.com/CloudyKit/fastprinter v0.0.0-20170127035650-74b38d55f37a // indirect
 	github.com/chromedp/chromedp v0.5.2
-	github.com/cloudykit/jet v2.1.2+incompatible
 	github.com/elazarl/goproxy v0.0.0-20191011121108-aa519ddbe484 // indirect
 	github.com/jinzhu/configor v1.1.1
 	github.com/kr/pretty v0.1.0 // indirect
@@ -14,7 +12,7 @@ require (
 	github.com/robfig/cron/v3 v3.0.0
 	github.com/sirupsen/logrus v1.4.2
 	github.com/smartystreets/goconvey v1.6.4 // indirect
-	github.com/storezhang/gos v1.2.0
+	github.com/storezhang/gos v1.2.1
 	github.com/tj/go-naturaldate v1.2.0
 	gopkg.in/check.v1 v1.0.0-20180628173108-788fd7840127 // indirect
 	moul.io/http2curl v1.0.0 // indirect

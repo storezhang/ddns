@@ -1,10 +1,8 @@
 package main
 
 import (
-    `bytes`
     `context`
     `fmt`
-    `html/template`
     `math/rand`
     `strings`
     `time`
@@ -15,6 +13,7 @@ import (
     `github.com/tj/go-naturaldate`
 
     `github.com/parnurzeal/gorequest`
+    `github.com/storezhang/gos/tpls`
 
     `songjiang/common`
     `songjiang/sign`
@@ -218,10 +217,10 @@ func notify(app *common.App, songjiang *common.Songjiang, result *sign.AutoSignR
 
     var titleTemplate string
     var contentTemplate string
-    if "" == strings.TrimSpace(app.Template.Title) && "" == strings.TrimSpace(app.Template.Context) {
+    if "" != strings.TrimSpace(app.Template.Title) && "" != strings.TrimSpace(app.Template.Context) {
         titleTemplate = app.Template.Title
         contentTemplate = app.Template.Context
-    } else if "" == strings.TrimSpace(songjiang.Template.Title) && "" == strings.TrimSpace(songjiang.Template.Context) {
+    } else if "" != strings.TrimSpace(songjiang.Template.Title) && "" != strings.TrimSpace(songjiang.Template.Context) {
         titleTemplate = songjiang.Template.Title
         contentTemplate = songjiang.Template.Context
     } else {
@@ -247,8 +246,8 @@ func notifyToUser(
         App:    app,
         Result: result,
     }
-    title := render("title", titleTemplate, data)
-    desp := render("desp", contentTemplate, data)
+    title := tpls.Render("title", titleTemplate, data)
+    desp := tpls.Render("desp", contentTemplate, data)
     // 真正发推送
     for _, ch := range chans {
         rsp, body, errs := req.Post(fmt.Sprintf("https://sc.ftqq.com/%s.send", ch.Key)).
@@ -273,19 +272,4 @@ func notifyToUser(
             }).Info("ServerChan推送消息成功")
         }
     }
-}
-
-func render(name string, tpl string, data interface{}) (result string) {
-    tmpl, err := template.New(name).Parse(tpl)
-    if err != nil {
-        result = ""
-    }
-    buf := new(bytes.Buffer)
-    err = tmpl.Execute(buf, data)
-    if err != nil {
-        result = ""
-    }
-    result = buf.String()
-
-    return
 }
