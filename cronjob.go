@@ -185,6 +185,17 @@ func (job *AutoSignJob) Run() {
     )
     defer cancel()
 
+    if !job.songjiang.Debug {
+        if duration, err := time.ParseDuration(job.songjiang.BrowserTimeout); nil != err {
+            log.WithFields(log.Fields{
+                "browserTimeout": job.songjiang.BrowserTimeout,
+            }).Warn("browserTimeout配置有错误")
+        } else {
+            ctx, cancel = context.WithTimeout(ctx, duration)
+            defer cancel()
+        }
+    }
+
     log.WithFields(log.Fields{
         "name":  job.app.Name,
         "start": job.app.StartTime,
@@ -192,7 +203,7 @@ func (job *AutoSignJob) Run() {
         "type":  job.app.Type,
     }).Info("开始执行签到任务")
 
-    result := job.signer.AutoSign(ctx, job.app.Cookies)
+    result, _ := job.signer.AutoSign(ctx, job.app.Cookies)
     // 通知用户，如果有设置消息推送
     notify(job.app, job.songjiang, &result)
 

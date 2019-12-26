@@ -13,13 +13,14 @@ type Config struct {
 
 // Songjiang 程序整体配置
 type Songjiang struct {
-    Debug         bool   `default:"false"`
-    LogLevel      string `default:"info"`
-    Chans         []ServerChan
-    Template      Template
-    BrowserWidth  int    `default:"1920"`
-    BrowserHeight int    `default:"1080"`
-    Redo          string `default:"30m"`
+    Debug          bool   `default:"false"`
+    LogLevel       string `default:"info"`
+    Chans          []ServerChan
+    Template       Template
+    BrowserWidth   int    `default:"1920"`
+    BrowserHeight  int    `default:"1080"`
+    BrowserTimeout string `default:"30m"`
+    Redo           string `default:"30m"`
 }
 
 // App 应用配置

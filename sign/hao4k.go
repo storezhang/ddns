@@ -20,7 +20,7 @@ type Hao4k struct {
 }
 
 // AutoSign Hao4K的自动签到任务
-func (hao4k *Hao4k) AutoSign(ctx context.Context, cookies string) (result AutoSignResult) {
+func (hao4k *Hao4k) AutoSign(ctx context.Context, cookies string) (result AutoSignResult, err error) {
     if err := chromedp.Run(ctx); nil != err {
         log.WithFields(log.Fields{
             "err": err,
