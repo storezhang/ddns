@@ -21,21 +21,25 @@ type Hao4k struct {
 
 // AutoSign Hao4K的自动签到任务
 func (hao4k *Hao4k) AutoSign(ctx context.Context, cookies string) (result AutoSignResult, err error) {
-    if err := chromedp.Run(ctx); nil != err {
+    if e := chromedp.Run(ctx); nil != e {
+        err = e
+
         log.WithFields(log.Fields{
-            "err": err,
+            "error": e,
         }).Error("无法启动浏览器实例")
     } else {
         log.Info("启动浏览器成功")
     }
 
     // 等待签到界面完成
-    if err := chromedp.Run(
+    if e := chromedp.Run(
         ctx,
         chromedps.DefaultVisit(hao4k.SignUrl, cookies),
-    ); nil != err {
+    ); nil != e {
+        err = e
+
         log.WithFields(log.Fields{
-            "err": err,
+            "error": e,
         }).Error("无法载入签到界面")
     } else {
         log.Info("成功进入签到界面")
@@ -44,14 +48,14 @@ func (hao4k *Hao4k) AutoSign(ctx context.Context, cookies string) (result AutoSi
     // 签到前的K币
     result.Before = getKB(ctx, hao4k)
     // 确认是否已经签到
-    if err := chromedp.Run(
+    if e := chromedp.Run(
         ctx,
         chromedps.DefaultSleep(),
         chromedps.TasksWithTimeOut(&ctx, "10s", chromedp.Tasks{
             chromedp.Navigate(hao4k.SignUrl),
             chromedp.WaitVisible(hao4k.SignedSelector),
         }),
-    ); nil != err {
+    ); nil != e {
         log.Info("还没有签到，继续执行自动签到任务")
     } else {
         // 签到后的K币
@@ -67,15 +71,17 @@ func (hao4k *Hao4k) AutoSign(ctx context.Context, cookies string) (result AutoSi
     }
 
     // 点击签到按扭
-    if err := chromedp.Run(
+    if e := chromedp.Run(
         ctx,
         chromedps.DefaultSleep(),
         chromedp.Navigate(hao4k.SignUrl),
         chromedps.DefaultSleep(),
         chromedp.Click(hao4k.SignSelector, chromedp.NodeVisible),
-    ); nil != err {
+    ); nil != e {
+        err = e
+
         log.WithFields(log.Fields{
-            "err": err,
+            "error": e,
         }).Error("无法点击签到按扭")
     } else {
         // 签到后的K币

@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b40ba5bc-9ec5-475c-a4b4-f4ade3e30968" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cronjob.go" beforeDir="false" afterPath="$PROJECT_DIR$/cronjob.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sign/hao4k.go" beforeDir="false" afterPath="$PROJECT_DIR$/sign/hao4k.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sign/sign_api.go" beforeDir="false" afterPath="$PROJECT_DIR$/sign/sign_api.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +73,7 @@
       <recent name="E:\Workspaces\Jetbrains\songjiang" />
     </key>
   </component>
-  <component name="RunManager" selected="Docker.docker">
+  <component name="RunManager" selected="Go Build.songjiang">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="songjiang" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -158,7 +155,8 @@
     <MESSAGE value="去掉某些日志" />
     <MESSAGE value="收工" />
     <MESSAGE value="修复Docker打包" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复Docker打包" />
+    <MESSAGE value="增加超时" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加超时" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -211,11 +209,11 @@
       <screen x="63" y="0" width="1217" height="720" />
     </state>
     <state x="393" y="331" width="672" height="389" key="#xdebugger.evaluate/63.0.1217.720@63.0.1217.720" timestamp="1576566984536" />
-    <state x="-1304" y="131" key="CommitChangelistDialog2" timestamp="1577252101279">
+    <state x="-1304" y="131" key="CommitChangelistDialog2" timestamp="1577330194648">
       <screen x="-1858" y="0" width="1858" height="1080" />
     </state>
     <state x="615" y="131" key="CommitChangelistDialog2/60.0.1860.1080@60.0.1860.1080" timestamp="1576765343198" />
-    <state x="-1304" y="131" key="CommitChangelistDialog2/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1577252101279" />
+    <state x="-1304" y="131" key="CommitChangelistDialog2/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1577330194648" />
     <state x="426" y="0" key="CommitChangelistDialog2/63.0.1217.720@63.0.1217.720" timestamp="1577018323354" />
     <state x="293" y="53" key="DiffContextDialog" timestamp="1576936338885">
       <screen x="63" y="0" width="1217" height="720" />
@@ -226,29 +224,29 @@
     </state>
     <state x="-1264" y="173" key="FileChooserDialogImpl/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1577251736254" />
     <state x="452" y="115" key="FileChooserDialogImpl/63.0.1217.720@63.0.1217.720" timestamp="1577015741242" />
-    <state width="1815" height="388" key="GridCell.Tab.0.bottom" timestamp="1577241151373">
+    <state width="1815" height="293" key="GridCell.Tab.0.bottom" timestamp="1577330549136">
       <screen x="-1858" y="0" width="1858" height="1080" />
     </state>
     <state width="1814" height="350" key="GridCell.Tab.0.bottom/60.0.1860.1080@60.0.1860.1080" timestamp="1576766119553" />
-    <state width="1815" height="388" key="GridCell.Tab.0.bottom/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1577241151373" />
+    <state width="1815" height="293" key="GridCell.Tab.0.bottom/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1577330549136" />
     <state width="1173" height="176" key="GridCell.Tab.0.bottom/63.0.1217.720@63.0.1217.720" timestamp="1576931834466" />
-    <state width="1815" height="388" key="GridCell.Tab.0.center" timestamp="1577241151372">
+    <state width="1815" height="293" key="GridCell.Tab.0.center" timestamp="1577330549136">
       <screen x="-1858" y="0" width="1858" height="1080" />
     </state>
     <state width="1814" height="350" key="GridCell.Tab.0.center/60.0.1860.1080@60.0.1860.1080" timestamp="1576766119552" />
-    <state width="1815" height="388" key="GridCell.Tab.0.center/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1577241151372" />
+    <state width="1815" height="293" key="GridCell.Tab.0.center/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1577330549136" />
     <state width="1173" height="176" key="GridCell.Tab.0.center/63.0.1217.720@63.0.1217.720" timestamp="1576931834466" />
-    <state width="1815" height="388" key="GridCell.Tab.0.left" timestamp="1577241151372">
+    <state width="1815" height="293" key="GridCell.Tab.0.left" timestamp="1577330549136">
       <screen x="-1858" y="0" width="1858" height="1080" />
     </state>
     <state width="1814" height="350" key="GridCell.Tab.0.left/60.0.1860.1080@60.0.1860.1080" timestamp="1576766119552" />
-    <state width="1815" height="388" key="GridCell.Tab.0.left/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1577241151372" />
+    <state width="1815" height="293" key="GridCell.Tab.0.left/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1577330549136" />
     <state width="1173" height="176" key="GridCell.Tab.0.left/63.0.1217.720@63.0.1217.720" timestamp="1576931834465" />
-    <state width="1815" height="388" key="GridCell.Tab.0.right" timestamp="1577241151372">
+    <state width="1815" height="293" key="GridCell.Tab.0.right" timestamp="1577330549136">
       <screen x="-1858" y="0" width="1858" height="1080" />
     </state>
     <state width="1814" height="350" key="GridCell.Tab.0.right/60.0.1860.1080@60.0.1860.1080" timestamp="1576766119552" />
-    <state width="1815" height="388" key="GridCell.Tab.0.right/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1577241151372" />
+    <state width="1815" height="293" key="GridCell.Tab.0.right/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1577330549136" />
     <state width="1173" height="176" key="GridCell.Tab.0.right/63.0.1217.720@63.0.1217.720" timestamp="1576931834466" />
     <state width="1815" height="388" key="GridCell.Tab.1.bottom" timestamp="1577241151373">
       <screen x="-1858" y="0" width="1858" height="1080" />
@@ -288,11 +286,11 @@
       <screen x="63" y="0" width="1217" height="720" />
     </state>
     <state x="173" y="2" key="SettingsEditor/63.0.1217.720@63.0.1217.720" timestamp="1576937731632" />
-    <state x="-1337" y="272" key="Vcs.Push.Dialog.v2" timestamp="1577252102990">
+    <state x="-1337" y="272" key="Vcs.Push.Dialog.v2" timestamp="1577330207344">
       <screen x="-1858" y="0" width="1858" height="1080" />
     </state>
     <state x="582" y="272" key="Vcs.Push.Dialog.v2/60.0.1860.1080@60.0.1860.1080" timestamp="1576765305410" />
-    <state x="-1337" y="272" key="Vcs.Push.Dialog.v2/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1577252102990" />
+    <state x="-1337" y="272" key="Vcs.Push.Dialog.v2/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1577330207344" />
     <state x="404" y="181" key="Vcs.Push.Dialog.v2/63.0.1217.720@63.0.1217.720" timestamp="1577018337500" />
     <state width="939" height="551" key="XDebugger.FullValuePopup" timestamp="1576831543830">
       <screen x="-1858" y="0" width="1858" height="1080" />
@@ -312,10 +310,10 @@
       <screen x="-1858" y="0" width="1858" height="1080" />
     </state>
     <state x="-1120" y="456" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1576719219658" />
-    <state x="-1209" y="302" key="git4idea.ui.GitTagDialog" timestamp="1577245634285">
+    <state x="-1209" y="302" key="git4idea.ui.GitTagDialog" timestamp="1577330201724">
       <screen x="-1858" y="0" width="1858" height="1080" />
     </state>
-    <state x="-1209" y="302" key="git4idea.ui.GitTagDialog/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1577245634285" />
+    <state x="-1209" y="302" key="git4idea.ui.GitTagDialog/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1577330201724" />
     <state x="488" y="201" key="git4idea.ui.GitTagDialog/63.0.1217.720@63.0.1217.720" timestamp="1577018331633" />
     <state x="334" y="37" width="672" height="678" key="search.everywhere.popup" timestamp="1576936855365">
       <screen x="63" y="0" width="1217" height="720" />
