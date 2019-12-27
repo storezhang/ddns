@@ -21,9 +21,10 @@ steps:
 
   - name: docker
     image: plugins/docker
-    trigger:
+    when:
       event:
         - tag
+        - pull_request
     settings:
       repo: storezhang/songjiang
       dockerfile: ./Dockerfile
