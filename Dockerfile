@@ -33,7 +33,6 @@ RUN set -ex \
     && chmod +x /etc/s6/songjiang/* \
     && chmod +x /opt/songjiang \
     \
-    && apk --no-cache add bash s6 su-exec \
     && rm -rf /var/cache/apk/*
 
 
