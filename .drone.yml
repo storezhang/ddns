@@ -37,6 +37,7 @@ steps:
         - 'latest'
       auto_tag: true
       force_tag: true
+      dry_run: true
 
 
 volumes:
