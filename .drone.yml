@@ -21,10 +21,6 @@ steps:
 
   - name: docker
     image: plugins/docker
-    when:
-      event:
-        - tag
-        - pull_request
     settings:
       repo: storezhang/songjiang
       dockerfile: ./Dockerfile
@@ -33,11 +29,8 @@ steps:
       username: storezhang
       password:
         from_secret: docker_password
-      tags:
-        - 'latest'
       auto_tag: true
       force_tag: true
-      dry_run: true
 
 
 volumes:
