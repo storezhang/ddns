@@ -34,7 +34,7 @@ steps:
       password:
         from_secret: docker_password
       tags:
-        - latest
+        - 'latest'
       auto_tag: true
       force_tag: true
 
