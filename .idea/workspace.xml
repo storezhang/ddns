@@ -3,7 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="b40ba5bc-9ec5-475c-a4b4-f4ade3e30968" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cronjob.go" beforeDir="false" afterPath="$PROJECT_DIR$/cronjob.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sign/hao4k.go" beforeDir="false" afterPath="$PROJECT_DIR$/sign/hao4k.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +155,6 @@
     <MESSAGE value="项目初始化" />
     <MESSAGE value="增加hao4k" />
     <MESSAGE value="修复Hao4k签到" />
-    <MESSAGE value="修复docker打包" />
     <MESSAGE value="增加模板" />
     <MESSAGE value="去掉某些日志" />
     <MESSAGE value="收工" />
@@ -159,7 +162,8 @@
     <MESSAGE value="增加超时" />
     <MESSAGE value="修复不正确的字段命名" />
     <MESSAGE value="修复drone docker任务只能在tag下执行" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复drone docker任务只能在tag下执行" />
+    <MESSAGE value="修复docker打包" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复docker打包" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -213,11 +217,11 @@
       <screen x="63" y="0" width="1217" height="720" />
     </state>
     <state x="393" y="331" width="672" height="389" key="#xdebugger.evaluate/63.0.1217.720@63.0.1217.720" timestamp="1576566984536" />
-    <state x="-1304" y="131" key="CommitChangelistDialog2" timestamp="1577423929408">
+    <state x="-1304" y="131" key="CommitChangelistDialog2" timestamp="1577431727001">
       <screen x="-1858" y="0" width="1858" height="1080" />
     </state>
     <state x="615" y="131" key="CommitChangelistDialog2/60.0.1860.1080@60.0.1860.1080" timestamp="1576765343198" />
-    <state x="-1304" y="131" key="CommitChangelistDialog2/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1577423929408" />
+    <state x="-1304" y="131" key="CommitChangelistDialog2/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1577431727001" />
     <state x="426" y="0" key="CommitChangelistDialog2/63.0.1217.720@63.0.1217.720" timestamp="1577018323354" />
     <state x="293" y="53" key="DiffContextDialog" timestamp="1576936338885">
       <screen x="63" y="0" width="1217" height="720" />
@@ -291,11 +295,11 @@
     </state>
     <state x="-1690" y="3" key="SettingsEditor/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1577354725155" />
     <state x="173" y="2" key="SettingsEditor/63.0.1217.720@63.0.1217.720" timestamp="1576937731632" />
-    <state x="-1337" y="272" key="Vcs.Push.Dialog.v2" timestamp="1577423937839">
+    <state x="-1337" y="272" key="Vcs.Push.Dialog.v2" timestamp="1577431747675">
       <screen x="-1858" y="0" width="1858" height="1080" />
     </state>
     <state x="582" y="272" key="Vcs.Push.Dialog.v2/60.0.1860.1080@60.0.1860.1080" timestamp="1576765305410" />
-    <state x="-1337" y="272" key="Vcs.Push.Dialog.v2/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1577423937839" />
+    <state x="-1337" y="272" key="Vcs.Push.Dialog.v2/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1577431747675" />
     <state x="404" y="181" key="Vcs.Push.Dialog.v2/63.0.1217.720@63.0.1217.720" timestamp="1577018337500" />
     <state width="939" height="551" key="XDebugger.FullValuePopup" timestamp="1576831543830">
       <screen x="-1858" y="0" width="1858" height="1080" />
@@ -319,10 +323,10 @@
       <screen x="63" y="0" width="1217" height="720" />
     </state>
     <state x="63" y="0" width="1231" height="737" maximized="true" key="dock-window-1/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1577423354986" />
-    <state x="-1209" y="302" key="git4idea.ui.GitTagDialog" timestamp="1577331020548">
+    <state x="-1209" y="302" key="git4idea.ui.GitTagDialog" timestamp="1577431740817">
       <screen x="-1858" y="0" width="1858" height="1080" />
     </state>
-    <state x="-1209" y="302" key="git4idea.ui.GitTagDialog/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1577331020548" />
+    <state x="-1209" y="302" key="git4idea.ui.GitTagDialog/63.0.1217.720/-1858.0.1858.1080@-1858.0.1858.1080" timestamp="1577431740817" />
     <state x="488" y="201" key="git4idea.ui.GitTagDialog/63.0.1217.720@63.0.1217.720" timestamp="1577018331633" />
     <state x="334" y="37" width="672" height="678" key="search.everywhere.popup" timestamp="1576936855365">
       <screen x="63" y="0" width="1217" height="720" />

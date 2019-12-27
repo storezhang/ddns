@@ -2,6 +2,7 @@ package main
 
 import (
     `context`
+    `crypto/tls`
     `fmt`
     `math/rand`
     `strings`
@@ -17,6 +18,11 @@ import (
 
     `songjiang/common`
     `songjiang/sign`
+
+    `github.com/kamilsk/retry/v4`
+    `github.com/kamilsk/retry/v4/backoff`
+    `github.com/kamilsk/retry/v4/jitter`
+    `github.com/kamilsk/retry/v4/strategy`
 )
 
 // SongjiangJob 动态域名解析任务
@@ -37,6 +43,10 @@ func initJobCache() {
 func init() {
     // 初始化Http客户端
     req = gorequest.New()
+    req.Timeout(60 * time.Second)
+    // 忽略TLS证书
+    req.TLSClientConfig(&tls.Config{InsecureSkipVerify: true})
+
     // 初始化随机数
     rand.Seed(time.Now().UnixNano())
     // 初始化缓存
@@ -203,18 +213,42 @@ func (job *AutoSignJob) Run() {
         "type":  job.app.Type,
     }).Info("开始执行签到任务")
 
-    result, _ := job.signer.AutoSign(ctx, job.app.Cookies)
-    // 通知用户，如果有设置消息推送
-    notify(job.app, job.songjiang, &result)
+    var result sign.AutoSignResult
+    autoSign := func(uint) (err error) {
+        result, err = job.signer.AutoSign(ctx, job.app.Cookies)
 
-    log.WithFields(log.Fields{
-        "name":   job.app.Name,
-        "start":  job.app.StartTime,
-        "end":    job.app.EndTime,
-        "type":   job.app.Type,
-        "before": result.Before,
-        "after":  result.After,
-    }).Info("成功签到任务")
+        return err
+    }
+    how := retry.How{
+        strategy.Limit(job.songjiang.RetryLimit),
+        strategy.BackoffWithJitter(
+            backoff.Fibonacci(10*time.Second),
+            jitter.NormalDistribution(
+                rand.New(rand.NewSource(time.Now().UnixNano())),
+                0.25,
+            ),
+        ),
+    }
+    retryCtx, _ := context.WithTimeout(context.Background(), time.Hour)
+    if err := retry.Try(retryCtx, autoSign, how...); nil != err {
+        log.WithFields(log.Fields{
+            "name":  job.app.Name,
+            "start": job.app.StartTime,
+            "end":   job.app.EndTime,
+            "type":  job.app.Type,
+            "error": err,
+        }).Fatal("系统异常，无法签到")
+    } else { // 通知用户，如果有设置消息推送
+        notify(job.app, job.songjiang, &result)
+        log.WithFields(log.Fields{
+            "name":   job.app.Name,
+            "start":  job.app.StartTime,
+            "end":    job.app.EndTime,
+            "type":   job.app.Type,
+            "before": result.Before,
+            "after":  result.After,
+        }).Info("成功签到任务")
+    }
 }
 
 func notify(app *common.App, songjiang *common.Songjiang, result *sign.AutoSignResult) {
@@ -261,6 +295,7 @@ func notifyToUser(
     title := tpls.Render("title", titleTemplate, data)
     desp := tpls.Render("desp", contentTemplate, data)
     // 真正发推送
+
     for _, ch := range chans {
         rsp, body, errs := req.Post(fmt.Sprintf("https://sc.ftqq.com/%s.send", ch.Key)).
             Type("form").

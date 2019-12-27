@@ -21,6 +21,7 @@ type Songjiang struct {
     BrowserHeight  int    `default:"1080"`
     BrowserTimeout string `default:"30m"`
     Redo           string `default:"30m"`
+    RetryLimit     uint   `default:"30"`
 }
 
 // App 应用配置

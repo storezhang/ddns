@@ -23,10 +23,11 @@ type Hao4k struct {
 func (hao4k *Hao4k) AutoSign(ctx context.Context, cookies string) (result AutoSignResult, err error) {
     if e := chromedp.Run(ctx); nil != e {
         err = e
-
         log.WithFields(log.Fields{
             "error": e,
         }).Error("无法启动浏览器实例")
+
+        return
     } else {
         log.Info("启动浏览器成功")
     }
@@ -37,10 +38,11 @@ func (hao4k *Hao4k) AutoSign(ctx context.Context, cookies string) (result AutoSi
         chromedps.DefaultVisit(hao4k.SignUrl, cookies),
     ); nil != e {
         err = e
-
         log.WithFields(log.Fields{
             "error": e,
         }).Error("无法载入签到界面")
+
+        return
     } else {
         log.Info("成功进入签到界面")
     }
@@ -79,10 +81,11 @@ func (hao4k *Hao4k) AutoSign(ctx context.Context, cookies string) (result AutoSi
         chromedp.Click(hao4k.SignSelector, chromedp.NodeVisible),
     ); nil != e {
         err = e
-
         log.WithFields(log.Fields{
             "error": e,
         }).Error("无法点击签到按扭")
+
+        return
     } else {
         // 签到后的K币
         result.Success = true

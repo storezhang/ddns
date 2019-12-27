@@ -6,6 +6,7 @@ require (
 	github.com/chromedp/chromedp v0.5.2
 	github.com/elazarl/goproxy v0.0.0-20191011121108-aa519ddbe484 // indirect
 	github.com/jinzhu/configor v1.1.1
+	github.com/kamilsk/retry/v4 v4.4.0
 	github.com/kr/pretty v0.1.0 // indirect
 	github.com/parnurzeal/gorequest v0.2.16
 	github.com/pkg/errors v0.8.1 // indirect
