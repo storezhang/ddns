@@ -229,12 +229,12 @@ func notify(app *common.App, songjiang *common.Songjiang, result *sign.AutoSignR
 
     var titleTemplate string
     var contentTemplate string
-    if "" != strings.TrimSpace(app.Template.Title) && "" != strings.TrimSpace(app.Template.Context) {
+    if "" != strings.TrimSpace(app.Template.Title) && "" != strings.TrimSpace(app.Template.Content) {
         titleTemplate = app.Template.Title
-        contentTemplate = app.Template.Context
-    } else if "" != strings.TrimSpace(songjiang.Template.Title) && "" != strings.TrimSpace(songjiang.Template.Context) {
+        contentTemplate = app.Template.Content
+    } else if "" != strings.TrimSpace(songjiang.Template.Title) && "" != strings.TrimSpace(songjiang.Template.Content) {
         titleTemplate = songjiang.Template.Title
-        contentTemplate = songjiang.Template.Context
+        contentTemplate = songjiang.Template.Content
     } else {
         return
     }

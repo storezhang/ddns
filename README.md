@@ -1,4 +1,4 @@
-# songjiang
+# songjiang（宋江）
 [![Build Status](https://cloud.drone.io/api/badges/storezhang/songjiang/status.svg)](https://cloud.drone.io/storezhang/songjiang)
 [![](https://images.microbadger.com/badges/image/storezhang/songjiang.svg)](https://microbadger.com/images/storezhang/songjiang "Get your own image badge on microbadger.com")
 [![](https://images.microbadger.com/badges/version/storezhang/songjiang.svg)](https://microbadger.com/images/storezhang/songjiang "Get your own version badge on microbadger.com")
@@ -35,14 +35,27 @@ sudo docker run \
 配置文件名为songjiang.yml，有如下配置项（**示例所配置的值为默认值**）
 ```
 songjiang:
-  debug: false
-  chans:
-    - key: ${SERVERCHAN_SCKEY}
+    debug: false
+    logLevel: info
+    chans:
+        - key: ${SERVERCHAN_SCKEY}
+    template:
+        title: 签到后：{{.Result.After}}，签到前{{.Result.Before}}
+        content: 任务名称：{{.App.Name}} {{.Result.Msg}}
+    browserWidth: 1920
+    browserHeight: 1080
+    browserTimeout: 30m
+    redo: 30m
 
 apps:
-  - name: Hao4k自动签到领积分
+    - name: Hao4k自动签到领积分
     type: hao4k
     chans:
-      - key: ${SERVERCHAN_SCKEY}
+        - key: ${SERVERCHAN_SCKEY}
+    template:
+        title: 签到后：{{.Result.After}}，签到前{{.Result.Before}}
+        content: 任务名称：{{.App.Name}} {{.Result.Msg}}
     cookies: ${COOKIES}
+    startTime: 8:00
+    endTime: 23:00
 ```
