@@ -20,7 +20,7 @@ type Songjiang struct {
     BrowserWidth   int    `default:"1920"`
     BrowserHeight  int    `default:"1080"`
     BrowserTimeout string `default:"30m"`
-    Redo           string `default:"5m"`
+    Redo           string `default:"30m"`
     RetryLimit     uint   `default:"30"`
 }
 
