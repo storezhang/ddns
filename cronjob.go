@@ -169,52 +169,51 @@ type AutoSignJob struct {
 
 // Run 自动签到执行任务
 func (job *AutoSignJob) Run() {
-    opts := append(
-        chromedp.DefaultExecAllocatorOptions[:],
-        chromedp.DisableGPU,
-        chromedp.NoDefaultBrowserCheck,
-        chromedp.NoSandbox,
-        chromedp.Flag("ignore-certificate-errors", true),
-    )
-    if job.songjiang.Debug {
-        opts = append(opts, chromedp.Flag("headless", false))
-        opts = append(opts, chromedp.Flag("start-maximized", true))
-    } else {
-        opts = append(opts, chromedp.Headless)
-        opts = append(opts, chromedp.WindowSize(job.songjiang.BrowserWidth, job.songjiang.BrowserHeight))
-    }
-
-    allocCtx, cancel := chromedp.NewExecAllocator(context.Background(), opts...)
-    defer cancel()
-
-    ctx, cancel := chromedp.NewContext(
-        allocCtx,
-        chromedp.WithLogf(log.Printf),
-        chromedp.WithDebugf(log.Debugf),
-        chromedp.WithErrorf(log.Errorf),
-    )
-    defer cancel()
-
-    if !job.songjiang.Debug {
-        if duration, err := time.ParseDuration(job.songjiang.BrowserTimeout); nil != err {
-            log.WithFields(log.Fields{
-                "browserTimeout": job.songjiang.BrowserTimeout,
-            }).Warn("browserTimeout配置有错误")
-        } else {
-            ctx, cancel = context.WithTimeout(ctx, duration)
-            defer cancel()
-        }
-    }
-
-    log.WithFields(log.Fields{
-        "name":  job.app.Name,
-        "start": job.app.StartTime,
-        "end":   job.app.EndTime,
-        "type":  job.app.Type,
-    }).Info("开始执行签到任务")
-
     var result sign.AutoSignResult
     autoSign := func(uint) (err error) {
+        opts := append(
+            chromedp.DefaultExecAllocatorOptions[:],
+            chromedp.DisableGPU,
+            chromedp.NoDefaultBrowserCheck,
+            chromedp.NoSandbox,
+            chromedp.Flag("ignore-certificate-errors", true),
+        )
+        if job.songjiang.Debug {
+            opts = append(opts, chromedp.Flag("headless", false))
+            opts = append(opts, chromedp.Flag("start-maximized", true))
+        } else {
+            opts = append(opts, chromedp.Headless)
+            opts = append(opts, chromedp.WindowSize(job.songjiang.BrowserWidth, job.songjiang.BrowserHeight))
+        }
+
+        allocCtx, cancel := chromedp.NewExecAllocator(context.Background(), opts...)
+        defer cancel()
+
+        ctx, cancel := chromedp.NewContext(
+            allocCtx,
+            chromedp.WithLogf(log.Printf),
+            chromedp.WithDebugf(log.Debugf),
+            chromedp.WithErrorf(log.Errorf),
+        )
+        defer cancel()
+
+        if !job.songjiang.Debug {
+            if duration, err := time.ParseDuration(job.songjiang.BrowserTimeout); nil != err {
+                log.WithFields(log.Fields{
+                    "browserTimeout": job.songjiang.BrowserTimeout,
+                }).Warn("browserTimeout配置有错误")
+            } else {
+                ctx, cancel = context.WithTimeout(ctx, duration)
+                defer cancel()
+            }
+        }
+
+        log.WithFields(log.Fields{
+            "name":  job.app.Name,
+            "start": job.app.StartTime,
+            "end":   job.app.EndTime,
+            "type":  job.app.Type,
+        }).Info("开始执行签到任务")
         result, err = job.signer.AutoSign(ctx, job.app.Cookies)
 
         return err
@@ -237,7 +236,7 @@ func (job *AutoSignJob) Run() {
             "end":   job.app.EndTime,
             "type":  job.app.Type,
             "error": err,
-        }).Fatal("系统异常，无法签到")
+        }).Error("系统异常，无法签到")
     } else { // 通知用户，如果有设置消息推送
         notify(job.app, job.songjiang, &result)
         log.WithFields(log.Fields{
