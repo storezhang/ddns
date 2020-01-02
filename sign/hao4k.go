@@ -87,11 +87,11 @@ func (hao4k *Hao4k) AutoSign(ctx context.Context, cookies string) (result AutoSi
 
         return
     } else {
+        log.Info("成功点击签到按扭")
         // 签到后的K币
         result.Success = true
         result.After = getKB(ctx, hao4k)
         result.Msg = "签到成功"
-        log.Info("成功点击签到按扭")
     }
 
     return
