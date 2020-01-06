@@ -170,6 +170,7 @@ type AutoSignJob struct {
 // Run 自动签到执行任务
 func (job *AutoSignJob) Run() {
     var result sign.AutoSignResult
+    retryTimes := 0
     autoSign := func(uint) (err error) {
         opts := append(
             chromedp.DefaultExecAllocatorOptions[:],
@@ -209,12 +210,14 @@ func (job *AutoSignJob) Run() {
         }
 
         log.WithFields(log.Fields{
-            "name":  job.app.Name,
-            "start": job.app.StartTime,
-            "end":   job.app.EndTime,
-            "type":  job.app.Type,
+            "name":       job.app.Name,
+            "start":      job.app.StartTime,
+            "end":        job.app.EndTime,
+            "type":       job.app.Type,
+            "retryTimes": retryTimes,
         }).Info("开始执行签到任务")
         result, err = job.signer.AutoSign(ctx, job.app.Cookies)
+        retryTimes++
 
         return err
     }
