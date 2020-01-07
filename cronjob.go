@@ -170,7 +170,7 @@ type AutoSignJob struct {
 // Run 自动签到执行任务
 func (job *AutoSignJob) Run() {
     var result sign.AutoSignResult
-    retryTimes := 0
+    retryTimes := 1
     autoSign := func(uint) (err error) {
         opts := append(
             chromedp.DefaultExecAllocatorOptions[:],
