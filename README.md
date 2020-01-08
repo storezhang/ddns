@@ -1,18 +1,14 @@
-# songjiang（宋江）
-[![Build Status](https://cloud.drone.io/api/badges/storezhang/songjiang/status.svg)](https://cloud.drone.io/storezhang/songjiang)
-[![](https://images.microbadger.com/badges/image/storezhang/songjiang.svg)](https://microbadger.com/images/storezhang/songjiang "Get your own image badge on microbadger.com")
-[![](https://images.microbadger.com/badges/version/storezhang/songjiang.svg)](https://microbadger.com/images/storezhang/songjiang "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/commit/storezhang/songjiang.svg)](https://microbadger.com/images/storezhang/songjiang "Get your own commit badge on microbadger.com")
-[![Go Report Card](https://goreportcard.com/badge/github.com/storezhang/songjiang)](https://goreportcard.com/report/github.com/storezhang/songjiang)
+# ddns
+[![Build Status](https://cloud.drone.io/api/badges/storezhang/ddns/status.svg)](https://cloud.drone.io/storezhang/ddns)
+[![](https://images.microbadger.com/badges/image/storezhang/ddns.svg)](https://microbadger.com/images/storezhang/ddns "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/storezhang/ddns.svg)](https://microbadger.com/images/storezhang/ddns "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/commit/storezhang/ddns.svg)](https://microbadger.com/images/storezhang/ddns "Get your own commit badge on microbadger.com")
+[![Go Report Card](https://goreportcard.com/badge/github.com/storezhang/ddns)](https://goreportcard.com/report/github.com/storezhang/ddns)
 
 # 自动签到，特点如下：
 - 以Docker运行
 - 极低的内存占用
 - 极低的CPU消耗
-
-
-# 为什么叫宋江
-宋江，小说《水浒传》里面的梁山好汉的领袖，号及时雨，专干送钱的营生，给需要钱的人送去钱财，最后把梁山都送出去了。这个特性很像自动签到，及时补充账号中的钱财或者积分。
 
 
 # 如何使用
@@ -23,39 +19,37 @@
 直接使用命令行执行
 ```
 sudo docker run \
-  --volume=${YOUR_CONF_DIR}:/songjiang \
+  --volume=${YOUR_CONF_DIR}:/ddns \
   --restart=always \
   --detach=true \
-  --name=songjiang \
-  storezhang/songjiang
+  --name=ddns \
+  storezhang/ddns
 ```
 
 
 # 配置
-配置文件名为songjiang.yml，有如下配置项（**示例所配置的值为默认值**）
+application.yml或者application.toml，有如下配置项（**示例所配置的值为默认值**）
 ```
-songjiang:
-    debug: false
-    logLevel: info
-    chans:
-        - key: ${SERVERCHAN_SCKEY}
-    template:
-        title: 签到后：{{.Result.After}}，签到前{{.Result.Before}}
-        content: 任务名称：{{.App.Name}} {{.Result.Msg}}
-    browserWidth: 1920
-    browserHeight: 1080
-    browserTimeout: 30m
-    redo: 30m
+ddns:
+  debug: false
+  chans:
+    - key: ${KEY}
 
-apps:
-    - name: Hao4k自动签到领积分
-    type: hao4k
-    chans:
-        - key: ${SERVERCHAN_SCKEY}
-    template:
-        title: 签到后：{{.Result.After}}，签到前{{.Result.Before}}
-        content: 任务名称：{{.App.Name}} {{.Result.Msg}}
-    cookies: ${COOKIES}
-    startTime: 8:00
-    endTime: 23:00
+aliyun:
+  appKey: ${APPKEY}
+  secret: ${SECRET}
+
+domains:
+  - type: aliyun
+    redo: 1m
+    name: xxx.com
+    subDomains: yyy
+    dnsTypes: A
+  - type: aliyun
+    redo: 1h
+    name: xxx.com
+    subDomains: aaa,bbb,ccc
+    subDomainStaff: zzz
+    value: yyy.xxx.com
+    dnsTypes: CNAME
 ```
