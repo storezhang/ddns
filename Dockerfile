@@ -1,13 +1,13 @@
-FROM storezhang/chromium
+FROM storezhang/alpine
 
 
 MAINTAINER storezhang "storezhang@gmail.com"
 LABEL architecture="AMD64/x86_64" version="latest" build="2019-12-19"
-LABEL Description="基于Alpine的自动签到镜像，支持Hao4K这类主流网站，也提供了ServerChan推送。"
+LABEL Description="基于Alpine的DDNS镜像，支持阿里云、百度云、腾讯云、DNSPod等。"
 
 
-ENV USERNAME songjiang
-ENV ROOT_DIR /songjiang
+ENV USERNAME ddns
+ENV ROOT_DIR /ddns
 ENV UID 1000
 ENV GID 1000
 
@@ -16,7 +16,7 @@ WORKDIR ${ROOT_DIR}
 VOLUME ${ROOT_DIR}
 
 
-ADD songjiang /opt
+ADD ddns /opt
 COPY docker /
 
 
@@ -30,8 +30,8 @@ RUN set -ex \
     && mkdir -p ${ROOT_DIR} \
     && chmod +x /usr/bin/entrypoint \
     && chmod +x /etc/s6/.s6-svscan/* \
-    && chmod +x /etc/s6/songjiang/* \
-    && chmod +x /opt/songjiang \
+    && chmod +x /etc/s6/ddns/* \
+    && chmod +x /opt/ddns \
     \
     && rm -rf /var/cache/apk/*
 
