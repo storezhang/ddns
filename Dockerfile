@@ -2,7 +2,7 @@ FROM storezhang/alpine
 
 
 MAINTAINER storezhang "storezhang@gmail.com"
-LABEL architecture="AMD64/x86_64" version="latest" build="2019-12-19"
+LABEL architecture="AMD64/x86_64" version="latest" build="2020-01-08"
 LABEL Description="基于Alpine的DDNS镜像，支持阿里云、百度云、腾讯云、DNSPod等。"
 
 
