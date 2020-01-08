@@ -7,7 +7,7 @@ if [ $(ls -1 "${ROOT_DIR}"/application.* 2>/dev/null | wc -l) -gt 0 ]; then
   echo "已存在配置文件，不复制配置文件模板"
 else
   echo "没有找到配置文件，复制配置文件模板"
-  cp /etc/songjiang/application.yml "${ROOT_DIR}/application.yml"
+  cp /etc/ddns/application.yml "${ROOT_DIR}/application.yml"
 fi
 
 chown -R "${USERNAME}":"${USERNAME}" "${ROOT_DIR}"

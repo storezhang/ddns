@@ -1,5 +1,5 @@
 kind: pipeline
-name: songjiang
+name: ddns
 
 clone:
   disable: true
@@ -22,7 +22,7 @@ steps:
   - name: docker
     image: plugins/docker
     settings:
-      repo: storezhang/songjiang
+      repo: storezhang/ddns
       dockerfile: ./Dockerfile
       mirror: https://docker.mirrors.ustc.edu.cn
       storage_driver: vfs

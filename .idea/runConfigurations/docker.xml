@@ -4,9 +4,9 @@
       <settings>
         <option name="buildCliOptions" value="" />
         <option name="command" value="" />
-        <option name="containerName" value="songjiang" />
+        <option name="containerName" value="ddns" />
         <option name="entrypoint" value="" />
-        <option name="imageTag" value="songjiang:1.0.2" />
+        <option name="imageTag" value="ddns:1.0.0" />
         <option name="commandLineOptions" value="" />
         <option name="sourceFilePath" value="Dockerfile" />
         <option name="volumeBindings">

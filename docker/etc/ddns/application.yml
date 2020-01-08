@@ -1,0 +1,22 @@
+ddns:
+  debug: false
+  chans:
+    - key: ${KEY}
+
+aliyun:
+  appKey: ${APPKEY}
+  secret: ${SECRET}
+
+domains:
+  - type: aliyun
+    redo: 1m
+    name: xxx.com
+    subDomains: yyy
+    dnsTypes: A
+  - type: aliyun
+    redo: 1h
+    name: xxx.com
+    subDomains: aaa,bbb,ccc
+    subDomainStaff: zzz
+    value: yyy.xxx.com
+    dnsTypes: CNAME

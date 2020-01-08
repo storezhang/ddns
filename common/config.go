@@ -1,43 +1,42 @@
 package common
 
 import (
-    "songjiang/sign"
+    `ddns/dns`
 )
 
 // Config 程序整体配置
 type Config struct {
-    Songjiang Songjiang
-    Hao4k     sign.Hao4k
-    Apps      []App
+    DDNS    DDNS
+    Aliyun  dns.Aliyun
+    Domains []Domain
 }
 
-// Songjiang 程序整体配置
-type Songjiang struct {
-    Debug          bool   `default:"false"`
-    LogLevel       string `default:"info"`
-    Chans          []ServerChan
-    Template       Template
-    BrowserWidth   int    `default:"1920"`
-    BrowserHeight  int    `default:"1080"`
-    BrowserTimeout string `default:"30m"`
-    Redo           string `default:"5m"`
-    RetryLimit     uint   `default:"30"`
+// DDNS 程序整体配置
+type DDNS struct {
+    Debug    bool   `default:"false"`
+    LogLevel string `default:"info" yaml:"logLevel" toml:"logLevel"`
+    Chans    []ServerChan
+    Template Template
 }
 
-// App 应用配置
-type App struct {
-    Name      string `default:"应用1"`
-    Chans     []ServerChan
-    Template  Template
-    Type      string `default:"hao4k"`
-    Cookies   string
-    StartTime string `default:"8:00"`
-    EndTime   string `default:"23:00"`
+// Domain 每个域名的配置
+type Domain struct {
+    Name            string `required:"true"`
+    Chans           []ServerChan
+    Template        Template
+    SubDomains      []string `required:"true" yaml:"subDomains" toml:"subDomains"`
+    SubDomainPrefix string   `yaml:"subDomainPrefix" toml:"subDomainPrefix"`
+    SubDomainStaff  string   `yaml:"subDomainStaff" toml:"subDomainStaff"`
+    Type            string   `default:"aliyun" required:"true"`
+    DNSTypes        []string `required:"true" yaml:"dnsTypes" toml:"dnsTypes"`
+    Value           string
+    TTL             int    `default:"600"`
+    Redo            string `default:"1m"`
 }
 
 // Template 模板配置
 // 用于：推送
 type Template struct {
-    Title   string `default:"'签到后：{{.Result.After}}，签到前{{.Result.Before}}'"`
-    Content string `default:"'任务名称：{{.App.Name}} {{.Result.Msg}}'"`
+    Title   string `default:"'解析后：{{.Result.After}}，解析前{{.Result.Before}}'"`
+    Content string `default:"'解析域名：{{.SubDomain}}.{{.Domain.Name}}'"`
 }
