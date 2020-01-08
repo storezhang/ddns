@@ -52,13 +52,14 @@ func main() {
         }
 
         // 增加启动立即执行
-        ddnsJob := &DDNSJob{resolver: resolver, domain: &domain, ddns: &ddns}
+        ddnsJob := &DDNSJob{resolver: resolver, domain: domain, ddns: &ddns}
         // 真正的执行任务
         spec := fmt.Sprintf("@every %s", domain.Redo)
         if id, err := crontab.AddJob(spec, ddnsJob); nil != err {
             log.WithFields(log.Fields{
                 "domain":     domain.Name,
                 "subDomains": domain.SubDomains,
+                "dnsTypes":   domain.DNSTypes,
                 "spec":       spec,
                 "err":        err,
             }).Error("添加DDNS任务失败")
@@ -66,6 +67,7 @@ func main() {
             log.WithFields(log.Fields{
                 "domain":     domain.Name,
                 "subDomains": domain.SubDomains,
+                "dnsTypes":   domain.DNSTypes,
                 "spec":       spec,
                 "id":         id,
             }).Info("添加DDNS任务成功")

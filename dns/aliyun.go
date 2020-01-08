@@ -61,11 +61,11 @@ func (aliyun *Aliyun) Resolve(
         result.Before = value
         result.After = value
         log.WithFields(log.Fields{
-            "domain": domain,
-            "rr":     rr,
-            "type":   dnsType,
-            "value":  value,
-            "ttl":    ttl,
+            "domain":  domain,
+            "rr":      rr,
+            "dnsType": dnsType,
+            "value":   value,
+            "ttl":     ttl,
         }).Info("已有相同记录，未做修改")
     }
 

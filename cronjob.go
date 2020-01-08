@@ -30,7 +30,7 @@ func init() {
 // DDNSJob 动态域名解析任务
 type DDNSJob struct {
     resolver dns.Resolver
-    domain   *common.Domain
+    domain   common.Domain
     ddns     *common.DDNS
 }
 
@@ -39,20 +39,22 @@ func (job *DDNSJob) Run() {
     refreshDns(job.resolver, job.ddns, job.domain)
 }
 
-func refreshDns(resolver dns.Resolver, ddns *common.DDNS, domain *common.Domain) {
+func refreshDns(resolver dns.Resolver, ddns *common.DDNS, domain common.Domain) {
     for _, dnsType := range domain.DNSTypes {
         value := getValue(dnsType, domain)
+
         for _, subDomain := range domain.SubDomains {
+            rr := subDomain
             if "" != strings.TrimSpace(domain.SubDomainPrefix) {
-                subDomain = fmt.Sprintf("%s.%s", domain.SubDomainPrefix, subDomain)
+                rr = fmt.Sprintf("%s.%s", domain.SubDomainPrefix, subDomain)
             }
             if "" != strings.TrimSpace(domain.SubDomainStaff) {
-                subDomain = fmt.Sprintf("%s.%s", subDomain, domain.SubDomainStaff)
+                rr = fmt.Sprintf("%s.%s", subDomain, domain.SubDomainStaff)
             }
 
             if result, err := resolver.Resolve(
                 domain.Name,
-                subDomain,
+                rr,
                 value,
                 dnsType,
                 domain.TTL,
@@ -76,14 +78,14 @@ func refreshDns(resolver dns.Resolver, ddns *common.DDNS, domain *common.Domain)
 
                 // 成功解析，发推送
                 if result.Success {
-                    notify(domain, subDomain, ddns, &result)
+                    notify(domain, subDomain, ddns, result)
                 }
             }
         }
     }
 }
 
-func getValue(dnsType string, domain *common.Domain) string {
+func getValue(dnsType string, domain common.Domain) string {
     var value string
 
     switch dnsType {
@@ -105,7 +107,7 @@ func getValue(dnsType string, domain *common.Domain) string {
     return value
 }
 
-func notify(domain *common.Domain, subDomain string, ddns *common.DDNS, result *dns.ResolveResult) {
+func notify(domain common.Domain, subDomain string, ddns *common.DDNS, result dns.ResolveResult) {
     var serverChans []common.ServerChan
     if nil != domain.Chans && 0 < len(domain.Chans) {
         serverChans = domain.Chans
@@ -131,22 +133,23 @@ func notify(domain *common.Domain, subDomain string, ddns *common.DDNS, result *
 }
 
 type notifyData struct {
-    Domain    *common.Domain
+    Domain    common.Domain
     SubDomain string
-    Result    *dns.ResolveResult
+    Result    dns.ResolveResult
 }
 
 func notifyToUser(
     chans []common.ServerChan,
     titleTemplate string,
     contentTemplate string,
-    domain *common.Domain,
+    domain common.Domain,
     subDomain string,
-    result *dns.ResolveResult,
+    result dns.ResolveResult,
 ) {
     data := &notifyData{
-        Domain: domain,
-        Result: result,
+        Domain:    domain,
+        SubDomain: subDomain,
+        Result:    result,
     }
     title := tpls.Render("title", titleTemplate, data)
     desp := tpls.Render("desp", contentTemplate, data)
