@@ -76,7 +76,7 @@ func resolve(resolver dns.Resolver, domain common.Domain, ddns *common.DDNS, rr 
         }).Info("执行DNS解析更新失败")
     } else {
         log.WithFields(log.Fields{
-            "name":    domain,
+            "name":    domain.Name,
             "rr":      rr,
             "dnsType": dnsType,
             "type":    domain.Type,
