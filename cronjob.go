@@ -52,35 +52,40 @@ func refreshDns(resolver dns.Resolver, ddns *common.DDNS, domain common.Domain) 
                 rr = fmt.Sprintf("%s.%s", subDomain, domain.SubDomainStaff)
             }
 
-            if result, err := resolver.Resolve(
-                domain.Name,
-                rr,
-                value,
-                dnsType,
-                domain.TTL,
-            ); nil != err {
-                log.WithFields(log.Fields{
-                    "name":      domain.Name,
-                    "subDomain": subDomain,
-                    "dnsType":   dnsType,
-                    "type":      domain.Type,
-                    "value":     value,
-                    "error":     err,
-                }).Info("执行DNS解析更新失败")
-            } else {
-                log.WithFields(log.Fields{
-                    "name":      domain.Name,
-                    "subDomain": subDomain,
-                    "dnsType":   dnsType,
-                    "type":      domain.Type,
-                    "value":     value,
-                }).Info("执行DNS解析更新成功")
+            // 对每个解析开启一个协程，增加性能
+            go resolve(resolver, domain, ddns, rr, value, dnsType)
+        }
+    }
+}
 
-                // 成功解析，发推送
-                if result.Success {
-                    notify(domain, subDomain, ddns, result)
-                }
-            }
+func resolve(resolver dns.Resolver, domain common.Domain, ddns *common.DDNS, rr string, value string, dnsType string) {
+    if result, err := resolver.Resolve(
+        domain.Name,
+        rr,
+        value,
+        dnsType,
+        domain.TTL,
+    ); nil != err {
+        log.WithFields(log.Fields{
+            "name":    domain.Name,
+            "rr":      rr,
+            "dnsType": dnsType,
+            "type":    domain.Type,
+            "value":   value,
+            "error":   err,
+        }).Info("执行DNS解析更新失败")
+    } else {
+        log.WithFields(log.Fields{
+            "name":    domain,
+            "rr":      rr,
+            "dnsType": dnsType,
+            "type":    domain.Type,
+            "value":   value,
+        }).Info("执行DNS解析更新成功")
+
+        // 成功解析，发推送
+        if result.Success {
+            notify(domain, rr, ddns, result)
         }
     }
 }
