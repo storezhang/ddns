@@ -2,7 +2,7 @@ secrets:
   - ak: ${ALIYUN_AK}
     sk: ${ALIYUN_SK}
 
-domains:
+resolves:
   - name: ruijc.com
     types:
       - CNAME

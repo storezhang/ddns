@@ -69,7 +69,7 @@ func (a *Agent) Run() (err error) {
 		return
 	}
 
-	for _, domain := range config.Domains {
+	for _, domain := range config.Resolves {
 		for _, subdomain := range domain.Subdomains {
 			_domain := core.NewDomain(
 				domain.Name, subdomain, uda.TypeCname, domain.Value, domain.Ttl,

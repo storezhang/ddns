@@ -9,7 +9,7 @@ type Config struct {
 	// 授权列表
 	Secrets []*Secret `json:"secrets" yaml:"secrets" xml:"secrets" toml:"secrets" validate:"required"`
 	// 域名列表
-	Domains []*resolve `json:"domains" yaml:"domains" xml:"domains" toml:"domains" validate:"required"`
+	Resolves []*resolve `json:"resolves" yaml:"resolves" xml:"resolves" toml:"resolves" validate:"required"`
 
 	secretCache *sync.Map
 }
