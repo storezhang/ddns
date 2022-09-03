@@ -3,5 +3,5 @@
 # 配置
 source ./setup
 
-# 启动Archtech服务器
-exec gosu "${USERNAME}" /opt/itcoursee/server --conf "${USER_HOME}"/application.yml serve
+# 启动机器
+su-exec "${USERNAME}" /usr/bin/ddns --conf "${USER_HOME}"/application.yml serve

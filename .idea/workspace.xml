@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d132418b-7d77-45d7-9822-347e2d5f896c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/t.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/conf/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/conf/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dns/agent.go" beforeDir="false" afterPath="$PROJECT_DIR$/dns/agent.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/etc/s6/ddns/run" beforeDir="false" afterPath="$PROJECT_DIR$/docker/etc/s6/ddns/run" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/t.yml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +142,8 @@
     <MESSAGE value="bugfix(徽标): 修改大写字母乱码的问题" />
     <MESSAGE value="feat(依赖): 升级依赖到最新版本" />
     <MESSAGE value="feat(解析): 增加A解析" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(解析): 增加A解析" />
+    <MESSAGE value="refactor(配置): 将Domains改为Resolves" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor(配置): 将Domains改为Resolves" />
   </component>
   <component name="VgoProject">
     <environment>
