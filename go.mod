@@ -3,9 +3,8 @@ module ddns
 go 1.18
 
 require (
-	github.com/goexl/exc v0.0.4
 	github.com/goexl/gox v0.0.9
-	github.com/goexl/uda v0.0.1
+	github.com/goexl/uda v0.0.2
 	github.com/pangum/logging v0.1.5
 	github.com/pangum/pangu v0.1.5
 	github.com/pangum/schedule v0.0.2
@@ -20,6 +19,7 @@ require (
 	github.com/go-playground/validator/v10 v10.11.0 // indirect
 	github.com/goexl/baozheng v0.0.1 // indirect
 	github.com/goexl/env v0.0.2 // indirect
+	github.com/goexl/exc v0.0.4 // indirect
 	github.com/goexl/gfx v0.0.8 // indirect
 	github.com/goexl/mengpo v0.1.8 // indirect
 	github.com/goexl/simaqian v0.1.3 // indirect
@@ -49,7 +49,3 @@ require (
 	gopkg.in/ini.v1 v1.66.2 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
-
-replace github.com/goexl/uda => ../../goexl/uda
-
-replace github.com/pangum/pangu => ../../pangum/pangu

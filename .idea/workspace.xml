@@ -5,40 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b40ba5bc-9ec5-475c-a4b4-f4ade3e30968" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.editorconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.github/dependabot.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.github/workflows/approve.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mergify.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bootstrap.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/conf/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/conf/config.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/conf/resolve.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/conf/secret.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/conf/type.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/domain.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dns/agent.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dns/pangu.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/cname.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.drone.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.drone.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ddns.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ddns.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/config.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/server_chain.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cronjob.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dns/aliyun.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dns/cache.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dns/dns_api.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dns/init.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/etc/ddns/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker/etc/ddns/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/etc/s6/.s6-svscan/finish" beforeDir="false" afterPath="$PROJECT_DIR$/docker/etc/s6/.s6-svscan/finish" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/etc/s6/ddns/finish" beforeDir="false" afterPath="$PROJECT_DIR$/docker/etc/s6/ddns/finish" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/etc/s6/ddns/run" beforeDir="false" afterPath="$PROJECT_DIR$/docker/etc/s6/ddns/run" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/etc/s6/ddns/setup" beforeDir="false" afterPath="$PROJECT_DIR$/docker/etc/s6/ddns/setup" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/usr/bin/entrypoint" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +31,9 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="MERGE" />
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="5" />
   </component>
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="true" />
@@ -110,7 +82,7 @@
     "WebServerToolWindowFactoryState": "false",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "D:/Workspaces/Jetbrains/storezhang/ddns/docker/etc/ddns",
+    "last_opened_file_path": "D:/Workspaces/Jetbrains/goexl/uda",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
