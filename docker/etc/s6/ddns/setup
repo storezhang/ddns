@@ -4,11 +4,11 @@
 permissionFile=${USER_HOME}/.permission.lock
 if [ "${SET_PERMISSIONS}" = true ] && [ ! -f "${permissionFile}" ]; then
   chown -R "${USERNAME}":"${USERNAME}" "${USER_HOME}"
+  su-exec "${USERNAME}" touch "${permissionFile}"
+fi
 
-  if [ ! -f "${permissionFile}" ]; then
-    su-exec "${USERNAME}" touch "${permissionFile}"
-  fi
-
-  # 复制配置文件到主目录
-  su-exec "${USERNAME}" cp /etc/ddns/application.yml "${USER_HOME}"
+# 复制配置文件到主目录
+configFile=${USER_HOME}/application.yml
+if [ ! -f "${configFile}" ]; then
+  su-exec "${USERNAME}" cp /etc/ddns/application.yml "${configFile}"
 fi
