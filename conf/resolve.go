@@ -29,6 +29,9 @@ func (r *resolve) Contains(typ uda.Type) (contains bool) {
 	for _, _typ := range r.Types {
 		if _typ == typ {
 			contains = true
+		}
+
+		if contains {
 			break
 		}
 	}
