@@ -13,6 +13,7 @@ import (
 	"github.com/pangum/logging"
 	"github.com/pangum/pangu"
 	"github.com/pangum/schedule"
+	"github.com/pangum/wanip"
 )
 
 type (
@@ -20,6 +21,7 @@ type (
 	Agent struct {
 		config    *pangu.Config
 		scheduler *schedule.Scheduler
+		wan       *wanip.Agent
 		logger    *logging.Logger
 	}
 
@@ -28,6 +30,7 @@ type (
 
 		Config    *pangu.Config
 		Scheduler *schedule.Scheduler
+		Wan       *wanip.Agent
 		Logger    *logging.Logger
 	}
 )
@@ -36,6 +39,7 @@ func newAgent(in agentIn) *Agent {
 	return &Agent{
 		config:    in.Config,
 		scheduler: in.Scheduler,
+		wan:       in.Wan,
 		logger:    in.Logger,
 	}
 }
@@ -71,11 +75,15 @@ func (a *Agent) Run() (err error) {
 				domain.Name, subdomain, uda.TypeCname, domain.Value, domain.Ttl,
 				domain.Prefix, domain.Staff,
 			)
+
+			secret := config.Secret(domain.Label)
 			switch {
 			case domain.Contains(uda.TypeCname) && `` != strings.TrimSpace(domain.Value):
-				secret := config.Secret(domain.Label)
 				executor := lib.NewCname(secret, _domain, a.logger)
 				_, err = a.scheduler.Add(executor, schedule.DurationTime(time.Second))
+			case domain.Contains(uda.TypeA):
+				executor := lib.NewA(secret, _domain, a.wan, a.logger)
+				_, err = a.scheduler.Add(executor, schedule.Duration(5*time.Second))
 			default:
 				a.logger.Error(`配置有误`, field.String(`domain`, _domain.Final()), field.Duration(`ttl`, domain.Ttl))
 			}

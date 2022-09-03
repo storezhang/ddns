@@ -14,7 +14,7 @@ import (
 
 // Cname CNAME解析
 type Cname struct {
-	uda    uda.Resolver
+	uda    *uda.Client
 	secret *conf.Secret
 	domain *core.Domain
 	logger *logging.Logger

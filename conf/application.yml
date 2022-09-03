@@ -9,3 +9,8 @@ domains:
     value: storezhang.ruijc.com
     subdomains:
       - test
+  - name: ruijc.com
+    types:
+      - A
+    subdomains:
+      - test

@@ -5,12 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d132418b-7d77-45d7-9822-347e2d5f896c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/lib/a.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/conf/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dns/agent.go" beforeDir="false" afterPath="$PROJECT_DIR$/dns/agent.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/cname.go" beforeDir="false" afterPath="$PROJECT_DIR$/lib/cname.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
   </component>
   <component name="GOROOT" url="file://$PROJECT_DIR$/../../../../Developments/Google/Golang/go1.18.4" />
   <component name="Git.Settings">
@@ -27,6 +40,17 @@
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="5" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/../../../../Developments/Google/Golang/gopath/pkg/mod/github.com/goexl/mengpo@v0.1.8/mengpo.go" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/../../../../Developments/Google/Golang/gopath/pkg/mod/github.com/pangum/http@v0.0.6/config.go" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/../../../../Developments/Google/Golang/gopath/pkg/mod/github.com/pangum/http@v0.0.6/pangu_config.go" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/../../../../Developments/Google/Golang/gopath/pkg/mod/github.com/pangum/http@v0.0.6/resty.go" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/../../../../Developments/Google/Golang/gopath/pkg/mod/github.com/pangum/pangu@v0.1.5/config.go" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/conf/application.yml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/dns/agent.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/go.mod" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/lib/a.go" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -41,6 +65,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultGoTemplateProperty": "Go File",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.go.format.on.save.advertiser.fired": "true",
@@ -51,7 +76,7 @@
     "WebServerToolWindowFactoryState": "false",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "D:/Workspaces/Jetbrains/pangum/pangu",
+    "last_opened_file_path": "D:/Workspaces/Jetbrains/pangum/wanip",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -62,6 +87,8 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Workspaces\Jetbrains\storezhang\ddns\lib" />
+      <recent name="D:\Workspaces\Jetbrains\storezhang\ddns" />
       <recent name="D:\Workspaces\Jetbrains\pangum\pangu" />
     </key>
   </component>
@@ -70,6 +97,19 @@
       <module name="ddns" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="FILE" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ddns" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <module name="ddns" />
+      <working_directory value="$PROJECT_DIR$" />
+      <parameters value="serve" />
+      <envs>
+        <env name="ALIYUN_AK" value="LTAI4FcYceCv8RUkRDLyUPMb" />
+        <env name="ALIYUN_SK" value="K7zTq5GR7JPDn7p3lUndAg75gAV0Ih" />
+      </envs>
+      <kind value="DIRECTORY" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
       <method v="2" />
@@ -115,5 +155,21 @@
       </map>
     </environment>
     <settings-migrated>true</settings-migrated>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/../../../../Developments/Google/Golang/gopath/pkg/mod/github.com/goexl/uda@v0.0.3/client.go</url>
+          <line>62</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/lib/a.go</url>
+          <line>37</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
