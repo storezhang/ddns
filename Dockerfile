@@ -1,40 +1,30 @@
-FROM storezhang/alpine
+FROM storezhang/alpine:3.16.2
 
 
-MAINTAINER storezhang "storezhang@gmail.com"
-LABEL architecture="AMD64/x86_64" version="latest" build="2020-01-08"
-LABEL Description="基于Alpine的DDNS镜像，支持阿里云、百度云、腾讯云、DNSPod等。"
+LABEL author="storezhang<华寅>"
+LABEL email="storezhang@gmail.com"
+LABEL qq="160290688"
+LABEL wechat="storezhang"
+LABEL description="动态域名解析，支持阿里云、百度云、腾讯云、DNSPod等"
 
 
-ENV USERNAME ddns
-ENV ROOT_DIR /ddns
-ENV UID 1000
-ENV GID 1000
-
-
-WORKDIR ${ROOT_DIR}
-VOLUME ${ROOT_DIR}
-
-
-ADD ddns /opt
+# 复制文件
 COPY docker /
+COPY ddns /usr/bin
 
 
 RUN set -ex \
     \
-    && addgroup -g ${GID} -S ${USERNAME} \
-    && adduser -u ${UID} -g ${GID} -S ${USERNAME} \
+    \
     \
     && apk update \
     \
-    && mkdir -p ${ROOT_DIR} \
-    && chmod +x /usr/bin/entrypoint \
-    && chmod +x /etc/s6/.s6-svscan/* \
+    # 增加执行权限，防止出现因为无执行权限导致在Docker内部无法运行的问题
     && chmod +x /etc/s6/ddns/* \
-    && chmod +x /opt/ddns \
+    \
+    # 增加执行权限
+    && chmod +x /usr/bin/ddns \
+    \
+    \
     \
     && rm -rf /var/cache/apk/*
-
-
-ENTRYPOINT ["/usr/bin/entrypoint"]
-CMD ["/bin/s6-svscan", "/etc/s6"]

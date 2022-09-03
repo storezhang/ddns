@@ -1,11 +1,7 @@
 #!/bin/bash
 
-[[ -f ./setup ]] && source ./setup
+# 配置
+source ./setup
 
-# shellcheck disable=SC2045
-for conf_file in $(ls "${ROOT_DIR}"/application.*); do
-  echo "使用配置文件${conf_file}运行"
-  # shellcheck disable=SC2086
-  su-exec "${USERNAME}" /opt/ddns --conf ${conf_file}
-  break
-done
+# 启动Archtech服务器
+exec gosu "${USERNAME}" /opt/itcoursee/server --conf "${USER_HOME}"/application.yml serve

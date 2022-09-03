@@ -1,13 +1,14 @@
-#!/bin/sh
+#!/bin/bash
 
-# shellcheck disable=SC2046
-# shellcheck disable=SC2006
-# shellcheck disable=SC2012
-if [ $(ls -1 "${ROOT_DIR}"/application.* 2>/dev/null | wc -l) -gt 0 ]; then
-  echo "已存在配置文件，不复制配置文件模板"
-else
-  echo "没有找到配置文件，复制配置文件模板"
-  cp /etc/ddns/application.yml "${ROOT_DIR}/application.yml"
+# 将主目录所有者改成系统创建的用户
+permissionFile=${USER_HOME}/.permission.lock
+if [ "${SET_PERMISSIONS}" = true ] && [ ! -f "${permissionFile}" ]; then
+  chown -R "${USERNAME}":"${USERNAME}" "${USER_HOME}"
+
+  if [ ! -f "${permissionFile}" ]; then
+    su-exec "${USERNAME}" touch "${permissionFile}"
+  fi
+
+  # 复制配置文件到主目录
+  su-exec "${USERNAME}" cp /etc/ddns/application.yml "${USER_HOME}"
 fi
-
-chown -R "${USERNAME}":"${USERNAME}" "${ROOT_DIR}"

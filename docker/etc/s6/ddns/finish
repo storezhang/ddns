@@ -1,3 +1,4 @@
 #!/bin/bash
 
+# 执行退出
 exit 0

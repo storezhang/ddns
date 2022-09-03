@@ -1,38 +1,50 @@
 kind: pipeline
-name: ddns
+type: docker
+name: 动态域名解析
+
 
 clone:
   disable: true
 
+
 steps:
-  - name: clone
-    image: plugins/git
-    recursive: true
+  - name: 代码
+    image: ccr.ccs.tencentyun.com/dronestock/git
 
-
-  - name: build
-    image: ataraev/golang-alpine-git
+  - name: 编译
+    image: ccr.ccs.tencentyun.com/pangum/drone
     volumes:
-      - name: deps
-        path: /go
-    commands:
-      - CGO_ENABLED=0 GOOS=linux go build -ldflags '-extldflags "-static"' -tags=jsoniter -a -installsuffix cgo -o $$DRONE_REPO_NAME .
-
-
-  - name: docker
-    image: plugins/docker
+      - name: go
+        path: /var/lib/go
     settings:
-      repo: storezhang/ddns
-      dockerfile: ./Dockerfile
-      mirror: https://docker.mirrors.ustc.edu.cn
-      storage_driver: vfs
-      username: storezhang
-      password:
-        from_secret: docker_password
-      auto_tag: true
-      force_tag: true
+      output: ddns
+
+  - name: 发布
+    image: ccr.ccs.tencentyun.com/dronestock/docker
+    privileged: true
+    volumes:
+      - name: docker
+        path: /var/lib/docker
+    environment:
+      PASSWORD_DOCKER:
+        from_secret: token_docker
+      PASSWORD_CCR:
+        from_secret: password_tencentyun_ccr
+    settings:
+      repository: storezhang/ddns
+      registries:
+        - username: storezhang
+          password: $${PASSWORD_DOCKER}
+        - hostname: ccr.ccs.tencentyun.com
+          username: "160290688"
+          password: $${PASSWORD_CCR}
+          required: true
 
 
 volumes:
-  - name: deps
-    temp: {}
+  - name: go
+    host:
+      path: /var/lib/cache/go
+  - name: docker
+    host:
+      path: /var/lib/cache/docker
