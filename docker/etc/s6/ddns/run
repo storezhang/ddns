@@ -4,4 +4,4 @@
 source ./setup
 
 # 启动机器
-su-exec "${USERNAME}" /usr/bin/ddns --conf "${USER_HOME}"/application.yml serve
+su-exec "${USERNAME}" /usr/bin/ddns --conf "${USER_HOME}/application.yml" serve

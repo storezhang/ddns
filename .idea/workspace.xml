@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d132418b-7d77-45d7-9822-347e2d5f896c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/docker/etc/s6/ddns/run" beforeDir="false" afterPath="$PROJECT_DIR$/docker/etc/s6/ddns/run" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/t.yml" beforeDir="false" />
-    </list>
+    <list default="true" id="d132418b-7d77-45d7-9822-347e2d5f896c" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -143,7 +140,8 @@
     <MESSAGE value="feat(依赖): 升级依赖到最新版本" />
     <MESSAGE value="feat(解析): 增加A解析" />
     <MESSAGE value="refactor(配置): 将Domains改为Resolves" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor(配置): 将Domains改为Resolves" />
+    <MESSAGE value="bugfix(启动): 修复缺失gosu的问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="bugfix(启动): 修复缺失gosu的问题" />
   </component>
   <component name="VgoProject">
     <environment>
