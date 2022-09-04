@@ -1,4 +1,4 @@
-FROM storezhang/alpine:3.16.2
+FROM ccr.ccs.tencentyun.com/storezhang/alpine:3.15.6
 
 
 LABEL author="storezhang<华寅>"
@@ -10,7 +10,7 @@ LABEL description="动态域名解析，支持阿里云、百度云、腾讯云�
 
 # 复制文件
 COPY docker /
-COPY ddns /usr/bin
+COPY ddns /opt/storezhang/
 
 
 RUN set -ex \
@@ -23,7 +23,7 @@ RUN set -ex \
     && chmod +x /etc/s6/ddns/* \
     \
     # 增加执行权限
-    && chmod +x /usr/bin/ddns \
+    && chmod +x /opt/storezhang/ddns \
     \
     \
     \

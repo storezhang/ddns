@@ -2,7 +2,7 @@
 
 # 将主目录所有者改成系统创建的用户
 permissionFile=${USER_HOME}/.permission.lock
-if [ "${SET_PERMISSIONS}" = true ] && [ ! -f "${permissionFile}" ]; then
+if [ ! -f "${permissionFile}" ]; then
   chown -R "${USERNAME}":"${USERNAME}" "${USER_HOME}"
   su-exec "${USERNAME}" touch "${permissionFile}"
 fi
