@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b40ba5bc-9ec5-475c-a4b4-f4ade3e30968" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/etc/s6/.s6-svscan/finish" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/etc/s6/ddns/finish" beforeDir="false" afterPath="$PROJECT_DIR$/docker/etc/s6/ddns/finish" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/etc/s6/ddns/run" beforeDir="false" afterPath="$PROJECT_DIR$/docker/etc/s6/ddns/run" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/etc/s6/ddns/setup" beforeDir="false" afterPath="$PROJECT_DIR$/docker/etc/s6/ddns/setup" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,10 +193,8 @@
     <MESSAGE value="代码调整" />
     <MESSAGE value="修复任务数据串了" />
     <MESSAGE value="增加协程，增加性能" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加协程，增加性能" />
-    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
-    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
-    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
+    <MESSAGE value="bugfix(启动): 修复权限问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="bugfix(启动): 修复权限问题" />
   </component>
   <component name="VgoProject">
     <environment>
