@@ -4,5 +4,4 @@
 source ./setup
 
 # 启动机器
-su-exec "${USERNAME}" cat "${USER_HOME}/application.yml"
-su-exec "${USERNAME}" /opt/storezhang/ddns --conf "${USER_HOME}/application.yml" serve
+su-exec "${USERNAME}" /opt/storezhang/ddns -c="${USER_HOME}/application.yml" serve
