@@ -60,6 +60,10 @@ func (d *Domain) Value() string {
 	return d.value
 }
 
+func (d *Domain) SetValue(value string) {
+	d.value = value
+}
+
 func (d *Domain) Name() string {
 	return d.name
 }

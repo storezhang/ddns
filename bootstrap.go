@@ -27,6 +27,6 @@ func newBootstrap(in bootstrapIn) pangu.Bootstrap {
 	}
 }
 
-func (b *bootstrap) Setup() error {
+func (b *bootstrap) Startup() error {
 	return b.application.AddServes(b.agent)
 }

@@ -46,7 +46,7 @@ func (a *A) Run() (err error) {
 	}
 	// 判断外网地址是否改变
 	if ip == a.domain.Value() {
-		a.logger.Info(`未做域名解析`, fields.Connect(field.String(`original`, a.domain.Value()))...)
+		a.logger.Info(`地址未改变，不做更新处理`, fields.Connect(field.String(`original`, a.domain.Value()))...)
 	}
 
 	options := uda.NewOptions(uda.Secret(a.secret.Ak, a.secret.Sk), uda.Ttl(a.domain.Ttl()), uda.A())
@@ -61,10 +61,14 @@ func (a *A) Run() (err error) {
 		options...,
 	); nil != udaErr {
 		err = udaErr
-	} else if do {
+	} else if do { // 如果设置成功，则更新原值，防止下次再请求数据
+		a.domain.SetValue(ip)
 		a.logger.Info(`域名解析成功`, fields.Connect(field.String(`original`, original))...)
+	} else if ip == original { // 记录值和原来一致，也要更新原来的记录值，防止后续继续调用解析方法
+		a.domain.SetValue(ip)
+		a.logger.Info(`记录值和原来一致，解析记录未更新`, fields.Connect(field.String(`original`, original))...)
 	} else {
-		a.logger.Info(`未做域名解析`, fields.Connect(field.String(`original`, original))...)
+		a.logger.Warn(`遇到未知原因，解析记录未更新`, fields.Connect(field.String(`original`, original))...)
 	}
 
 	return
