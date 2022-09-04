@@ -6,11 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d132418b-7d77-45d7-9822-347e2d5f896c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bootstrap.go" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/domain.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/domain.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/a.go" beforeDir="false" afterPath="$PROJECT_DIR$/lib/a.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +143,8 @@
     <MESSAGE value="feat(解析): 增加A解析" />
     <MESSAGE value="refactor(配置): 将Domains改为Resolves" />
     <MESSAGE value="bugfix(启动): 修复缺失gosu的问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="bugfix(启动): 修复缺失gosu的问题" />
+    <MESSAGE value="bugfix(解析): 修复解析未更新时频繁调用阿里云的接口" />
+    <option name="LAST_COMMIT_MESSAGE" value="bugfix(解析): 修复解析未更新时频繁调用阿里云的接口" />
   </component>
   <component name="VgoProject">
     <environment>

@@ -5,7 +5,7 @@ go 1.18
 require (
 	github.com/goexl/gox v0.0.9
 	github.com/goexl/uda v0.0.4
-	github.com/pangum/logging v0.1.5
+	github.com/pangum/logging v0.1.6
 	github.com/pangum/pangu v0.1.7
 	github.com/pangum/schedule v0.0.2
 	github.com/pangum/wanip v0.0.4

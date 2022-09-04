@@ -48,6 +48,9 @@ func (a *A) Run() (err error) {
 	if ip == a.domain.Value() {
 		a.logger.Info(`地址未改变，不做更新处理`, fields.Connect(field.String(`original`, a.domain.Value()))...)
 	}
+	if ip == a.domain.Value() {
+		return
+	}
 
 	options := uda.NewOptions(uda.Secret(a.secret.Ak, a.secret.Sk), uda.Ttl(a.domain.Ttl()), uda.A())
 	switch a.secret.Type {
