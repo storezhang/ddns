@@ -9,7 +9,7 @@
 ![授权协议](https://img.shields.io/github/license/storezhang/ddns)
 ![星星个数](https://img.shields.io/github/stars/storezhang/ddns?style=social)
 
-# 动态域名解析，特点如下：
+动态域名解析，特点如下：
 - 原生`Docker`支持
 - 极低的内存占用，大概`20M`左右的内存占用
 - 极低的`CPU`消耗，实测几十个域名解析也消耗不到`0.1%`的性能
