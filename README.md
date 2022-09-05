@@ -19,7 +19,7 @@
 # 如何使用
 
 直接使用命令行执行
-```
+```shell
 TAG="ccr.ccs.tencentyun.com/storezhang/ddns" && NAME="Ddns" && sudo docker pull ${TAG} && sudo docker stop ${NAME} ; sudo docker rm --force --volumes ${NAME} ; sudo docker run \
   \
   \
@@ -47,7 +47,7 @@ TAG="ccr.ccs.tencentyun.com/storezhang/ddns" && NAME="Ddns" && sudo docker pull 
 # 配置
 
 默认的配置文件如下
-```
+```yaml
 secrets:
   - ak: ${ALIYUN_AK}
     sk: ${ALIYUN_SK}
