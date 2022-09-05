@@ -11,19 +11,19 @@ type Config struct {
 	// 域名列表
 	Resolves []*resolve `json:"resolves" yaml:"resolves" xml:"resolves" toml:"resolves" validate:"required"`
 
-	secretCache *sync.Map
+	secrets *sync.Map
 }
 
 func (c *Config) Secret(label string) (secret *Secret) {
-	if nil == c.secretCache {
-		c.secretCache = new(sync.Map)
+	if nil == c.secrets {
+		c.secrets = new(sync.Map)
 		for _, _secret := range c.Secrets {
-			c.secretCache.Store(_secret.Label, _secret)
+			c.secrets.Store(_secret.Label, _secret)
 		}
 	}
 
-	if _secret, ok := c.secretCache.Load(label); ok {
-		secret = _secret.(*Secret)
+	if cached, ok := c.secrets.Load(label); ok {
+		secret = cached.(*Secret)
 	}
 
 	return

@@ -8,8 +8,11 @@ import (
 	"ddns/core"
 	"ddns/lib"
 
+	"github.com/goexl/gox"
 	"github.com/goexl/gox/field"
 	"github.com/goexl/uda"
+	"github.com/google/go-cmp/cmp"
+	"github.com/google/go-cmp/cmp/cmpopts"
 	"github.com/pangum/logging"
 	"github.com/pangum/pangu"
 	"github.com/pangum/schedule"
@@ -45,7 +48,13 @@ func newAgent(in agentIn) *Agent {
 }
 
 func (a *Agent) Start() (err error) {
-	if err = a.Run(); nil != err {
+	config := new(conf.Config)
+	// 加载配置文件
+	if err = a.loadTask(config); nil != err {
+		return
+	}
+	// 监控配置文件
+	if err = a.config.Watch(config, a); nil != err {
 		return
 	}
 	a.scheduler.Start()
@@ -63,12 +72,15 @@ func (a *Agent) Name() string {
 	return `域名解析`
 }
 
-func (a *Agent) Run() (err error) {
-	config := new(conf.Config)
+func (a *Agent) loadTask(config *conf.Config) (err error) {
 	if err = a.config.Load(config); nil != err {
 		return
 	}
 
+	// 先删除原来的任务
+	a.scheduler.Clear()
+
+	// 加载最新的任务
 	for _, domain := range config.Resolves {
 		for _, subdomain := range domain.Subdomains {
 			_domain := core.NewDomain(
@@ -77,13 +89,14 @@ func (a *Agent) Run() (err error) {
 			)
 
 			secret := config.Secret(domain.Label)
+			id := schedule.StringId(_domain.Final())
 			switch {
 			case domain.Contains(uda.TypeCname) && `` != strings.TrimSpace(domain.Value):
 				executor := lib.NewCname(secret, _domain, a.logger)
-				_, err = a.scheduler.Add(executor, schedule.DurationTime(time.Second))
+				_, err = a.scheduler.Add(executor, schedule.DurationTime(time.Second), id)
 			case domain.Contains(uda.TypeA):
 				executor := lib.NewA(secret, _domain, a.wan, a.logger)
-				_, err = a.scheduler.Add(executor, schedule.Duration(5*time.Second))
+				_, err = a.scheduler.Add(executor, schedule.Duration(5*time.Second), id)
 			default:
 				a.logger.Error(`配置有误`, field.String(`domain`, _domain.Final()), field.Duration(`ttl`, domain.Ttl))
 			}
@@ -92,3 +105,23 @@ func (a *Agent) Run() (err error) {
 
 	return
 }
+
+func (a *Agent) OnChanged(path string, from any, to any) {
+	var diff string
+	if diff = cmp.Diff(from, to, cmpopts.IgnoreFields(conf.Config{}, `secrets`)); `` == diff {
+		return
+	}
+
+	fields := gox.Fields{
+		field.String(`diff`, strings.TrimSpace(diff)),
+		field.String(`path`, path),
+	}
+	a.logger.Info(`检测到配置有更新，重新加载任务`, fields...)
+	if err := a.loadTask(to.(*conf.Config)); nil != err {
+		a.logger.Error(`装载任务失败`, fields.Connect(field.Error(err))...)
+	}
+}
+
+func (a *Agent) OnDeleted(_ string) {}
+
+func (a *Agent) OnError(_ string, _ error) {}

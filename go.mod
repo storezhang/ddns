@@ -5,9 +5,10 @@ go 1.18
 require (
 	github.com/goexl/gox v0.0.9
 	github.com/goexl/uda v0.0.4
+	github.com/google/go-cmp v0.5.8
 	github.com/pangum/logging v0.1.6
-	github.com/pangum/pangu v0.1.7
-	github.com/pangum/schedule v0.0.2
+	github.com/pangum/pangu v0.1.8
+	github.com/pangum/schedule v0.0.3
 	github.com/pangum/wanip v0.0.4
 )
 
@@ -15,6 +16,7 @@ require (
 	github.com/aliyun/alibaba-cloud-sdk-go v1.61.1755 // indirect
 	github.com/cpuguy83/go-md2man/v2 v2.0.2 // indirect
 	github.com/drone/envsubst v1.0.3 // indirect
+	github.com/fsnotify/fsnotify v1.5.4 // indirect
 	github.com/go-playground/locales v0.14.0 // indirect
 	github.com/go-playground/universal-translator v0.18.0 // indirect
 	github.com/go-playground/validator/v10 v10.11.0 // indirect
@@ -22,7 +24,7 @@ require (
 	github.com/goexl/baozheng v0.0.1 // indirect
 	github.com/goexl/env v0.0.2 // indirect
 	github.com/goexl/exc v0.0.4 // indirect
-	github.com/goexl/gfx v0.0.8 // indirect
+	github.com/goexl/gfx v0.1.0 // indirect
 	github.com/goexl/mengpo v0.1.9 // indirect
 	github.com/goexl/simaqian v0.1.3 // indirect
 	github.com/goexl/wanip v0.0.3 // indirect
