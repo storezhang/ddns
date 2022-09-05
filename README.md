@@ -7,6 +7,8 @@
 ![Docker镜像大小](https://img.shields.io/docker/image-size/storezhang/ddns)
 ![最后提交](https://img.shields.io/github/last-commit/storezhang/ddns)
 ![授权协议](https://img.shields.io/github/license/storezhang/ddns)
+![语言个数](https://img.shields.io/github/languages/count/storezhang/ddns)
+![最佳语言](https://img.shields.io/github/languages/top/storezhang/ddns)
 ![星星个数](https://img.shields.io/github/stars/storezhang/ddns?style=social)
 
 动态域名解析，特点如下：
