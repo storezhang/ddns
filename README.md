@@ -1,9 +1,13 @@
 # ddns
-[![Build Status](https://github.ruijc.com:20443/api/badges/storezhang/ddns/status.svg)](https://github.ruijc.com:20443/storezhang/ddns)
-[![](https://images.microbadger.com/badges/image/storezhang/ddns.svg)](https://microbadger.com/images/storezhang/ddns "Get your own image badge on microbadger.com")
-[![](https://images.microbadger.com/badges/version/storezhang/ddns.svg)](https://microbadger.com/images/storezhang/ddns "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/commit/storezhang/ddns.svg)](https://microbadger.com/images/storezhang/ddns "Get your own commit badge on microbadger.com")
-[![Go Report Card](https://goreportcard.com/badge/github.com/storezhang/ddns)](https://goreportcard.com/report/github.com/storezhang/ddns)
+[![编译状态](https://github.ruijc.com:20443/api/badges/storezhang/ddns/status.svg)](https://github.ruijc.com:20443/storezhang/ddns)
+[![Golang质量](https://goreportcard.com/badge/github.com/storezhang/ddns)](https://goreportcard.com/report/github.com/storezhang/ddns)
+![版本](https://img.shields.io/github/go-mod/go-version/storezhang/ddns)
+![Docker镜像版本](https://img.shields.io/docker/v/storezhang/ddns)
+![仓库大小](https://img.shields.io/github/repo-size/storezhang/ddns)
+![Docker镜像大小](https://img.shields.io/docker/image-size/storezhang/ddns)
+![最后提交](https://img.shields.io/github/last-commit/storezhang/ddns)
+![授权协议](https://img.shields.io/github/license/storezhang/ddns)
+![星星个数](https://img.shields.io/github/stars/storezhang/ddns?style=social)
 
 # 动态域名解析，特点如下：
 - 原生`Docker`支持
