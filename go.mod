@@ -3,9 +3,11 @@ module ddns
 go 1.18
 
 require (
+	github.com/goexl/dns v0.0.6
 	github.com/goexl/gox v0.0.9
 	github.com/goexl/uda v0.0.4
 	github.com/google/go-cmp v0.5.8
+	github.com/pangum/dns v0.0.1
 	github.com/pangum/logging v0.1.6
 	github.com/pangum/pangu v0.1.8
 	github.com/pangum/schedule v0.0.3
@@ -13,7 +15,7 @@ require (
 )
 
 require (
-	github.com/aliyun/alibaba-cloud-sdk-go v1.61.1755 // indirect
+	github.com/aliyun/alibaba-cloud-sdk-go v1.61.1760 // indirect
 	github.com/cpuguy83/go-md2man/v2 v2.0.2 // indirect
 	github.com/drone/envsubst v1.0.3 // indirect
 	github.com/fsnotify/fsnotify v1.5.4 // indirect
@@ -43,6 +45,8 @@ require (
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/sirupsen/logrus v1.9.0 // indirect
 	github.com/storezhang/dig v0.0.1 // indirect
+	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.0.488 // indirect
+	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/dnspod v1.0.488 // indirect
 	github.com/urfave/cli/v2 v2.14.0 // indirect
 	github.com/xrash/smetrics v0.0.0-20201216005158-039620a65673 // indirect
 	github.com/zs5460/art v0.2.0 // indirect

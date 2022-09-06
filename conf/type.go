@@ -1,8 +1,9 @@
 package conf
 
 const (
-	TypeAliyun     typ = `aliyun`
-	TypeTencentyun typ = `tencentyun`
+	TypeAliyun       typ = `aliyun`
+	TypeTencentCloud typ = `tencent`
+	TypeDnspod       typ = `dnspod`
 )
 
 type typ string
