@@ -13,6 +13,7 @@ import (
 	"github.com/goexl/uda"
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
+	"github.com/pangum/dns"
 	"github.com/pangum/logging"
 	"github.com/pangum/pangu"
 	"github.com/pangum/schedule"
@@ -24,6 +25,7 @@ type (
 	Agent struct {
 		config    *pangu.Config
 		scheduler *schedule.Scheduler
+		dns       *dns.Client
 		wan       *wanip.Agent
 		logger    *logging.Logger
 	}
@@ -33,6 +35,7 @@ type (
 
 		Config    *pangu.Config
 		Scheduler *schedule.Scheduler
+		Dns       *dns.Client
 		Wan       *wanip.Agent
 		Logger    *logging.Logger
 	}
@@ -42,6 +45,7 @@ func newAgent(in agentIn) *Agent {
 	return &Agent{
 		config:    in.Config,
 		scheduler: in.Scheduler,
+		dns:       in.Dns,
 		wan:       in.Wan,
 		logger:    in.Logger,
 	}
@@ -92,10 +96,10 @@ func (a *Agent) loadTask(config *conf.Config) (err error) {
 			id := schedule.StringId(_domain.Final())
 			switch {
 			case domain.Contains(uda.TypeCname) && `` != strings.TrimSpace(domain.Value):
-				executor := lib.NewCname(secret, _domain, a.logger)
+				executor := lib.NewCname(a.dns, secret, _domain, a.logger)
 				_, err = a.scheduler.Add(executor, schedule.DurationTime(time.Second), id)
 			case domain.Contains(uda.TypeA):
-				executor := lib.NewA(secret, _domain, a.wan, a.logger)
+				executor := lib.NewA(a.dns, secret, _domain, a.wan, a.logger)
 				_, err = a.scheduler.Add(executor, schedule.Duration(5*time.Second), id)
 			default:
 				a.logger.Error(`配置有误`, field.String(`domain`, _domain.Final()), field.Duration(`ttl`, domain.Ttl))
