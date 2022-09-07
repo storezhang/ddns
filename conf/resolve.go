@@ -3,7 +3,7 @@ package conf
 import (
 	"time"
 
-	"github.com/goexl/uda"
+	"github.com/goexl/dns"
 )
 
 type resolve struct {
@@ -14,7 +14,7 @@ type resolve struct {
 	// 标签
 	Label string `default:"aliyun" json:"label" yaml:"label" xml:"label" toml:"label" validate:"required"`
 	// 类型列表
-	Types []uda.Type `json:"types" yaml:"types" xml:"types" toml:"types" validate:"required,dive,oneof=CNAME A AAAA"`
+	Types []dns.Type `json:"types" yaml:"types" xml:"types" toml:"types" validate:"required,dive,oneof=CNAME A AAAA"`
 	// 记录值
 	Value string `json:"value" yaml:"value" xml:"value" toml:"value"`
 	// 生存时间
@@ -25,7 +25,7 @@ type resolve struct {
 	Staff string `json:"staff" yaml:"staff" xml:"staff" toml:"staff"`
 }
 
-func (r *resolve) Contains(typ uda.Type) (contains bool) {
+func (r *resolve) Contains(typ dns.Type) (contains bool) {
 	for _, _typ := range r.Types {
 		if _typ == typ {
 			contains = true

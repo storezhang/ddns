@@ -5,14 +5,14 @@ import (
 	"strings"
 	"time"
 
-	"github.com/goexl/uda"
+	"github.com/goexl/dns"
 )
 
 // Domain 域名
 type Domain struct {
 	name      string
 	subdomain string
-	typ       uda.Type
+	typ       dns.Type
 	value     string
 	ttl       time.Duration
 	prefix    string
@@ -22,7 +22,7 @@ type Domain struct {
 // NewDomain 创建域名
 func NewDomain(
 	name string, subdomain string,
-	typ uda.Type, value string, ttl time.Duration,
+	typ dns.Type, value string, ttl time.Duration,
 	prefix string, staff string,
 ) *Domain {
 	return &Domain{
