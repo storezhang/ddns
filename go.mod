@@ -1,4 +1,4 @@
-module ddns
+module github.com/storezhang/ddns
 
 go 1.18
 

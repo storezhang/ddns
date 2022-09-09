@@ -1,7 +1,7 @@
 package main
 
 import (
-	"ddns/dns"
+	"github.com/storezhang/ddns/dns"
 
 	"github.com/pangum/pangu"
 )

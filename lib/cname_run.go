@@ -3,7 +3,7 @@ package lib
 import (
 	"context"
 
-	"ddns/conf"
+	"github.com/storezhang/ddns/conf"
 
 	"github.com/goexl/dns"
 	"github.com/goexl/gox"

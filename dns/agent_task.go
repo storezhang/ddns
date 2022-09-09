@@ -4,9 +4,9 @@ import (
 	"strings"
 	"time"
 
-	"ddns/conf"
-	"ddns/core"
-	"ddns/lib"
+	"github.com/storezhang/ddns/conf"
+	"github.com/storezhang/ddns/core"
+	"github.com/storezhang/ddns/lib"
 
 	"github.com/goexl/dns"
 	"github.com/goexl/gox/field"

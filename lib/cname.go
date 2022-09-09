@@ -1,8 +1,8 @@
 package lib
 
 import (
-	"ddns/conf"
-	"ddns/core"
+	"github.com/storezhang/ddns/conf"
+	"github.com/storezhang/ddns/core"
 
 	"github.com/pangum/dns"
 	"github.com/pangum/logging"

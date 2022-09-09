@@ -3,7 +3,7 @@ package dns
 import (
 	"strings"
 
-	"ddns/conf"
+	"github.com/storezhang/ddns/conf"
 
 	"github.com/goexl/gox"
 	"github.com/goexl/gox/field"
