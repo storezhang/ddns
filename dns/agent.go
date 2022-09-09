@@ -88,6 +88,10 @@ func (a *Agent) OnChanged(path string, from any, to any) {
 	}
 }
 
-func (a *Agent) OnDeleted(_ string) {}
+func (a *Agent) OnDeleted(path string) {
+	a.logger.Error(`配置文件被删除，严重错误`, field.String(`path`, path))
+}
 
-func (a *Agent) OnError(_ string, _ error) {}
+func (a *Agent) OnError(path string, err error) {
+	a.logger.Warn(`配置文件有错误`, field.String(`path`, path), field.Error(err))
+}
