@@ -80,3 +80,9 @@ resolves:
 ```
 
 配置文件可以使用`${ENV}`来加载环境变量
+
+
+## 感谢Jetbrains
+
+本项目通过`Jetbrains开源许可IDE`编写源代码，特此感谢
+[![Jetbrains图标](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png)](https://www.jetbrains.com/?from=pangum/pangu)
