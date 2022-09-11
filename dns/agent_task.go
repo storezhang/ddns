@@ -37,7 +37,7 @@ func (a *Agent) loadTask(config *conf.Config) (err error) {
 				_, err = a.scheduler.Add(executor, schedule.DurationTime(time.Second), id)
 			case domain.Contains(dns.TypeA):
 				executor := lib.NewA(a.dns, secret, _domain, a.wan, a.logger)
-				_, err = a.scheduler.Add(executor, schedule.Duration(5*time.Second), id)
+				_, err = a.scheduler.Add(executor, schedule.Duration(config.Ddns.Interval), id)
 			default:
 				a.logger.Error(`配置有误`, field.String(`domain`, _domain.Final()), field.Duration(`ttl`, domain.Ttl))
 			}

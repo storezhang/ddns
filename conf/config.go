@@ -6,6 +6,8 @@ import (
 
 // Config 配置
 type Config struct {
+	// 配置
+	Ddns ddns `json:"ddns" yaml:"ddns" xml:"ddns" toml:"ddns"`
 	// 授权列表
 	Secrets []*Secret `json:"secrets" yaml:"secrets" xml:"secrets" toml:"secrets" validate:"required"`
 	// 域名列表
