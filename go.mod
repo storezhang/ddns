@@ -8,13 +8,13 @@ require (
 	github.com/google/go-cmp v0.5.9
 	github.com/pangum/dns v0.0.2
 	github.com/pangum/logging v0.1.6
-	github.com/pangum/pangu v0.2.0
+	github.com/pangum/pangu v0.2.1
 	github.com/pangum/schedule v0.0.3
 	github.com/pangum/wanip v0.0.4
 )
 
 require (
-	github.com/aliyun/alibaba-cloud-sdk-go v1.61.1760 // indirect
+	github.com/aliyun/alibaba-cloud-sdk-go v1.61.1768 // indirect
 	github.com/cpuguy83/go-md2man/v2 v2.0.2 // indirect
 	github.com/drone/envsubst v1.0.3 // indirect
 	github.com/fsnotify/fsnotify v1.5.4 // indirect
@@ -31,12 +31,12 @@ require (
 	github.com/goexl/wanip v0.0.3 // indirect
 	github.com/goexl/xiren v0.0.3 // indirect
 	github.com/google/uuid v1.3.0 // indirect
-	github.com/jmespath/go-jmespath v0.0.0-20180206201540-c2b33e8439af // indirect
-	github.com/json-iterator/go v1.1.5 // indirect
+	github.com/jmespath/go-jmespath v0.4.0 // indirect
+	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
-	github.com/modern-go/reflect2 v1.0.1 // indirect
+	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/pangum/http v0.0.6 // indirect
 	github.com/pelletier/go-toml v1.9.5 // indirect
 	github.com/robfig/cron/v3 v3.0.1 // indirect
@@ -44,18 +44,18 @@ require (
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/sirupsen/logrus v1.9.0 // indirect
 	github.com/storezhang/dig v0.0.1 // indirect
-	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.0.492 // indirect
-	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/dnspod v1.0.492 // indirect
-	github.com/urfave/cli/v2 v2.15.0 // indirect
+	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.0.493 // indirect
+	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/dnspod v1.0.493 // indirect
+	github.com/urfave/cli/v2 v2.16.0 // indirect
 	github.com/xrash/smetrics v0.0.0-20201216005158-039620a65673 // indirect
 	github.com/zs5460/art v0.2.0 // indirect
 	go.uber.org/atomic v1.10.0 // indirect
 	go.uber.org/multierr v1.8.0 // indirect
 	go.uber.org/zap v1.23.0 // indirect
 	golang.org/x/crypto v0.0.0-20220829220503-c86fa9a7ed90 // indirect
-	golang.org/x/net v0.0.0-20220826154423-83b083e8dc8b // indirect
+	golang.org/x/net v0.0.0-20220909164309-bea034e7d591 // indirect
 	golang.org/x/sys v0.0.0-20220909162455-aba9fc2a8ff2 // indirect
 	golang.org/x/text v0.3.7 // indirect
-	gopkg.in/ini.v1 v1.66.2 // indirect
+	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
