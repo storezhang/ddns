@@ -1,4 +1,4 @@
-FROM ccr.ccs.tencentyun.com/storezhang/alpine:3.16.2
+FROM ccr.ccs.tencentyun.com/storezhang/alpine:3.17.1
 
 
 LABEL author="storezhang<华寅>"
