@@ -4,12 +4,12 @@ go 1.18
 
 require (
 	github.com/goexl/dns v0.0.7
-	github.com/goexl/gox v0.2.8
+	github.com/goexl/gox v0.3.0
 	github.com/google/go-cmp v0.5.9
 	github.com/pangum/dns v0.0.2
-	github.com/pangum/logging v0.1.9
+	github.com/pangum/logging v0.2.0
 	github.com/pangum/pangu v0.3.1
-	github.com/pangum/schedule v0.0.6
+	github.com/pangum/schedule v0.0.7
 	github.com/pangum/wanip v0.0.4
 )
 
@@ -21,7 +21,7 @@ require (
 	github.com/go-ole/go-ole v1.2.6 // indirect
 	github.com/go-playground/locales v0.14.1 // indirect
 	github.com/go-playground/universal-translator v0.18.1 // indirect
-	github.com/go-playground/validator/v10 v10.11.2 // indirect
+	github.com/go-playground/validator/v10 v10.12.0 // indirect
 	github.com/go-resty/resty/v2 v2.7.0 // indirect
 	github.com/goexl/baozheng v0.0.1 // indirect
 	github.com/goexl/env v0.0.2 // indirect
@@ -29,7 +29,7 @@ require (
 	github.com/goexl/gfx v0.1.7 // indirect
 	github.com/goexl/mengpo v0.2.4 // indirect
 	github.com/goexl/schedule v0.1.1 // indirect
-	github.com/goexl/simaqian v0.2.3 // indirect
+	github.com/goexl/simaqian v0.2.4 // indirect
 	github.com/goexl/wanip v0.0.3 // indirect
 	github.com/goexl/xiren v0.0.5 // indirect
 	github.com/google/uuid v1.3.0 // indirect
