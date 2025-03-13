@@ -5,7 +5,7 @@ go 1.18
 require (
 	github.com/goexl/dns v0.0.7
 	github.com/goexl/gox v0.3.2
-	github.com/google/go-cmp v0.6.0
+	github.com/google/go-cmp v0.7.0
 	github.com/pangum/dns v0.0.2
 	github.com/pangum/logging v0.2.0
 	github.com/pangum/pangu v0.3.1
