@@ -5,7 +5,7 @@ toolchain go1.24.1
 
 require (
 	github.com/goexl/dns v0.0.7
-	github.com/goexl/gox v0.4.6
+	github.com/goexl/gox v1.9.2
 	github.com/google/go-cmp v0.7.0
 	github.com/pangum/dns v0.0.2
 	github.com/pangum/logging v0.2.0
