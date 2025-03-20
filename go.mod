@@ -9,7 +9,7 @@ require (
 	github.com/google/go-cmp v0.7.0
 	github.com/pangum/dns v0.0.2
 	github.com/pangum/logging v0.2.0
-	github.com/pangum/pangu v1.5.8
+	github.com/pangum/pangu v1.5.9
 	github.com/pangum/schedule v0.1.2
 	github.com/pangum/wanip v0.0.4
 )
@@ -30,7 +30,7 @@ require (
 	github.com/goexl/exc v0.0.5 // indirect
 	github.com/goexl/exception v0.0.3 // indirect
 	github.com/goexl/gfx v0.2.5 // indirect
-	github.com/goexl/log v0.0.7 // indirect
+	github.com/goexl/log v0.0.9 // indirect
 	github.com/goexl/mengpo v0.2.6 // indirect
 	github.com/goexl/schedule v0.1.9 // indirect
 	github.com/goexl/simaqian v0.2.5 // indirect
